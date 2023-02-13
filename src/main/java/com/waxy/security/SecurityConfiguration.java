@@ -41,9 +41,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/api/register",
                 "/product",
                 "/saveContact",
+                "/saveSentence",
                 "/reservationSave",
                 "/getNotice/homePage",
-                "/getNotice/productPage"
+                "/getNotice/productPage",
+                "/allSentence",
+
 
         };
     }
@@ -62,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:8081", "http://localhost:8082","http://localhost:8080","http://localhost:8888","http://localhost:8898","https://koto-asiankitchen.de/api","https://koto-asiankitchen.de"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:8081", "http://localhost:9866","http://localhost:8080","http://localhost:8888","http://localhost:8898","https://koto-asiankitchen.de/api","https://koto-asiankitchen.de"));
         corsConfiguration.setAllowedMethods(Collections.singletonList(CorsConfiguration.ALL));
         corsConfiguration.setAllowedHeaders(Collections.singletonList(CorsConfiguration.ALL));
         corsConfiguration.setMaxAge(Duration.ofMinutes(10));
