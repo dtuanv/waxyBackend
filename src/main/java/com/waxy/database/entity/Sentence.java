@@ -14,12 +14,12 @@ import java.util.Set;
 public class Sentence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String english;
 
     private String vietnamese;
 
-    @OneToMany(mappedBy = "sentence")
+    @OneToMany(mappedBy = "sentence", cascade = CascadeType.ALL)
     private Set<German> germanSet;
 }

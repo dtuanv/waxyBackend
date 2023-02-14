@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GermanDto {
-    private int id;
+    private long id;
 
     private String gerSentence;
 

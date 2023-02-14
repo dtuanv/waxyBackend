@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.Set;
 
 @Repository
-public interface GermanRepository extends JpaRepository<German,Integer> {
+public interface GermanRepository extends JpaRepository<German,Long> {
     @Query(value="SELECT * FROM german ge WHERE ge.sentence_id = ?1",nativeQuery = true)
-    Set<German> findGermanBySentenceId(int id);
+    Set<German> findGermanBySentenceId(long id);
 
     @Query(value="SELECT   description FROM german ge WHERE ge.sentence_id = ?1",nativeQuery = true)
-    Set<String> findGermanSentence(int id);
+    Set<String> findGermanSentence(long id);
 }
