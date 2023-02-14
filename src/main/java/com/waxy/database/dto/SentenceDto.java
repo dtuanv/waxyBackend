@@ -9,7 +9,7 @@ import java.util.Set;
 @Setter
 public class SentenceDto {
 
-    private Integer id;
+    private long id;
 
     private String english;
 

@@ -8,10 +8,7 @@ import com.waxy.database.repository.SentenceRepository;
 import com.waxy.service.mapper.GermanMapper;
 import com.waxy.service.mapper.SentenceMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -50,6 +47,21 @@ public class SentenceController {
         }
 
         return sentenceDtoSet;
+    }
+
+    @GetMapping("/sentenceBy/{sentenceId}")
+    public SentenceDto getSentenceBy(@PathVariable long sentenceId){
+            SentenceDto sentenceDto = sentenceMapper.mapToDto(sentenceRepository.findById(sentenceId).orElseThrow(()
+                    -> new IllegalArgumentException(String.format(
+                    "can not found Sentence BY ID : "+ sentenceId
+            ))));
+            return sentenceDto;
+    }
+
+    @DeleteMapping("/delete/sentence/{sentenceId}")
+    private void deleteSentence(@PathVariable Long sentenceId){
+
+        sentenceRepository.deleteById(sentenceId);
     }
 
 }

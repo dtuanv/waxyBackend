@@ -7,25 +7,30 @@ import com.waxy.database.repository.SentenceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class SimpleSentenceMapper extends SentenceMapper{
     private final SentenceRepository sentenceRepository;
     private final GermanRepository germanRepository;
 
+    private final GermanMapper germanMapper;
+
 
     @Override
     public Sentence mapToEntity(SentenceDto sentenceDto) {
 //        System.out.println("SentenceDto.getId() "+SentenceDto.getId());
 //       SentenceSentence;
-//        if(SentenceDto.getId() != null &&SentenceDto.getId() > 0){
-//           Sentence =SentenceRepository.findById(SentenceDto.getId()).orElseThrow(()
-//                    -> new IllegalArgumentException(String.format("can not findSentence! ID: "+SentenceDto.getId())));
-//        }else {
-//           Sentence = newSentence();
-//
-//        }
-       Sentence sentence = new Sentence();
+        Sentence  sentence;
+        if( sentenceDto.getId() > 0){
+           sentence =sentenceRepository.findById(sentenceDto.getId()).orElseThrow(()
+                    -> new IllegalArgumentException(String.format("can not findSentence! ID: "+sentenceDto.getId())));
+        }else {
+           sentence = new Sentence();
+
+        }
+
 
        sentence.setEnglish(sentenceDto.getEnglish());
        sentence.setVietnamese(sentenceDto.getVietnamese());
@@ -44,7 +49,7 @@ public class SimpleSentenceMapper extends SentenceMapper{
 
       sentenceDto.setVietnamese(sentence.getVietnamese());
 
-//       SentenceDto.setGermanDtoSet(sentence.getGermanSet().stream().map(germanMapper :: mapToDto).collect(Collectors.toSet()));
+       sentenceDto.setGermanDtoSet(sentence.getGermanSet().stream().map(germanMapper :: mapToDto).collect(Collectors.toSet()));
 
 
 

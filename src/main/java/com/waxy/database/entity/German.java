@@ -13,10 +13,10 @@ import javax.persistence.*;
 public class German {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     private String gerSentence;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne()
     private Sentence sentence;
 }
