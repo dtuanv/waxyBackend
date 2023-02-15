@@ -15,6 +15,8 @@ public class SimpleSentenceMapper extends SentenceMapper{
     private final SentenceRepository sentenceRepository;
     private final GermanRepository germanRepository;
 
+    private final TopicMapper topicMapper;
+
     private final GermanMapper germanMapper;
 
 
@@ -30,10 +32,13 @@ public class SimpleSentenceMapper extends SentenceMapper{
            sentence = new Sentence();
 
         }
-
-
+        sentence.setGermanSet(sentenceDto.getGermanDtoSet().stream().map(germanMapper :: mapToEntity).collect(Collectors.toSet()));
        sentence.setEnglish(sentenceDto.getEnglish());
        sentence.setVietnamese(sentenceDto.getVietnamese());
+
+       sentence.setConjunction(sentenceDto.getConjunction());
+
+       sentence.setTopic(topicMapper.mapToEntity(sentenceDto.getTopic()));
 
 
 
@@ -51,7 +56,13 @@ public class SimpleSentenceMapper extends SentenceMapper{
 
        sentenceDto.setGermanDtoSet(sentence.getGermanSet().stream().map(germanMapper :: mapToDto).collect(Collectors.toSet()));
 
+        sentenceDto.setConjunction(sentence.getConjunction());
+    if(
+            sentence.getTopic() != null
+    ){
+        sentenceDto.setTopic(topicMapper.mapToDto(sentence.getTopic()));
 
+    }
 
 
 
