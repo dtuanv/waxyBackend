@@ -14,7 +14,7 @@ public class German {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @Column(columnDefinition="TEXT")
     private String gerSentence;
 
     @ManyToOne()

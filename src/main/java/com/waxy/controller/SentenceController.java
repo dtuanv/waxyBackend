@@ -25,13 +25,13 @@ public class SentenceController {
 
 
     @PostMapping("/saveSentence")
-    private void saveSentence(@RequestBody Sentence sentence){
+    private void saveSentence(@RequestBody SentenceDto sentenceDto){
 
-        for (German german : sentence.getGermanSet() ) {
-            german.setSentence(sentence);
-            germanRepository.save(german);
-        }
-       sentenceRepository.save(sentence);
+//        for (German german : sentence.getGermanSet() ) {
+//            german.setSentence(sentence);
+//            germanRepository.save(german);
+//        }
+       sentenceRepository.save(sentenceMapper.mapToEntity(sentenceDto));
     }
 
     @GetMapping("/allSentence")
@@ -41,6 +41,22 @@ public class SentenceController {
 
         for (SentenceDto sentenceDto : sentenceDtoSet ) {
            sentenceDto.setGermanDtoSet(germanRepository
+                    .findGermanBySentenceId(sentenceDto.getId()).stream().map(germanMapper :: mapToDto).collect(Collectors.toSet()));
+
+
+        }
+
+        return sentenceDtoSet;
+    }
+
+
+    @GetMapping("/sentence/topic/{topicId}")
+    private Set<SentenceDto> getSentenceByTopic(@PathVariable long topicId){
+        Set<SentenceDto> sentenceDtoSet =
+                sentenceRepository.getSentenceByTopicId(topicId).stream().map(sentenceMapper :: mapToDto).collect(Collectors.toSet());
+
+        for (SentenceDto sentenceDto : sentenceDtoSet ) {
+            sentenceDto.setGermanDtoSet(germanRepository
                     .findGermanBySentenceId(sentenceDto.getId()).stream().map(germanMapper :: mapToDto).collect(Collectors.toSet()));
 
 
