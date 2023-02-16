@@ -1,12 +1,14 @@
 package com.waxy.service.mapper;
 
 import com.waxy.database.dto.SentenceDto;
+import com.waxy.database.entity.German;
 import com.waxy.database.entity.Sentence;
 import com.waxy.database.repository.GermanRepository;
 import com.waxy.database.repository.SentenceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,7 +34,14 @@ public class SimpleSentenceMapper extends SentenceMapper{
            sentence = new Sentence();
 
         }
-        sentence.setGermanSet(sentenceDto.getGermanDtoSet().stream().map(germanMapper :: mapToEntity).collect(Collectors.toSet()));
+
+        Set<German> germanSet = sentenceDto.getGermanDtoSet().stream().map(germanMapper :: mapToEntity).collect(Collectors.toSet());
+        for ( German german : germanSet ) {
+            german.setSentence(sentence);
+        }
+        sentence.setGermanSet(germanSet);
+
+
        sentence.setEnglish(sentenceDto.getEnglish());
        sentence.setVietnamese(sentenceDto.getVietnamese());
 
