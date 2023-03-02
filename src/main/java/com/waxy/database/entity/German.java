@@ -17,6 +17,6 @@ public class German {
     @Column(columnDefinition="TEXT")
     private String gerSentence;
 
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Sentence sentence;
 }
