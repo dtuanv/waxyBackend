@@ -18,6 +18,8 @@ public class Topic {
     @Column(columnDefinition="TEXT")
     private String name;
 
+    private String category;
+
     @OneToMany(mappedBy = "topic",cascade = CascadeType.ALL)
     private Set<Sentence> sentences;
 }
