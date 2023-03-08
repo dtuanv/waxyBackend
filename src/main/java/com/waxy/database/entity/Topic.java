@@ -22,4 +22,7 @@ public class Topic {
 
     @OneToMany(mappedBy = "topic",cascade = CascadeType.ALL)
     private Set<Sentence> sentences;
+
+    @OneToMany(mappedBy = "topic",cascade = CascadeType.ALL)
+    private Set<ThemeTopic> themeTopics;
 }
