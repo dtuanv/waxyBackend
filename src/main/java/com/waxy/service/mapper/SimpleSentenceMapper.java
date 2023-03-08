@@ -21,6 +21,8 @@ public class SimpleSentenceMapper extends SentenceMapper{
 
     private final GermanMapper germanMapper;
 
+    private final ThemeTopicMapper themeTopicMapper;
+
 
     @Override
     public Sentence mapToEntity(SentenceDto sentenceDto) {
@@ -49,6 +51,8 @@ public class SimpleSentenceMapper extends SentenceMapper{
 
        sentence.setTopic(topicMapper.mapToEntity(sentenceDto.getTopic()));
 
+       sentence.setThemeTopic(themeTopicMapper.mapToEntity(sentenceDto.getThemeTopicDto()));
+
 
 
 
@@ -71,6 +75,9 @@ public class SimpleSentenceMapper extends SentenceMapper{
     ){
         sentenceDto.setTopic(topicMapper.mapToDto(sentence.getTopic()));
 
+    }
+    if(sentence.getThemeTopic() != null){
+        sentenceDto.setThemeTopicDto(themeTopicMapper.mapToDto(sentence.getThemeTopic()));
     }
 
 
