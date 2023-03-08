@@ -23,4 +23,6 @@ public class SentenceDto {
     private String conjunction;
 
     private TopicDto topic;
+
+    private ThemeTopicDto themeTopicDto;
 }

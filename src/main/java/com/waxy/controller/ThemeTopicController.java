@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,8 +24,9 @@ public class ThemeTopicController {
         themeTopicRepository.save(themeTopicMapper.mapToEntity(themeTopicDto));
     }
 //
-//    @GetMapping("/themeTopics/topic/{topicId}")
-//    public Set<ThemeTopicDto> getThemeTopics(@PathVariable long topicId){
-//        themeTopicRepository.fin
-//    }
+    @GetMapping("/themeTopics/topic/{topicId}")
+    public Set<ThemeTopicDto> getThemeTopics(@PathVariable long topicId){
+     return   themeTopicRepository.getAllThemeTopicByTopicId(topicId).stream()
+                .map(themeTopicMapper :: mapToDto).collect(Collectors.toSet());
+    }
 }
