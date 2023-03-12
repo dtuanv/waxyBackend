@@ -51,7 +51,10 @@ public class SimpleSentenceMapper extends SentenceMapper{
 
        sentence.setTopic(topicMapper.mapToEntity(sentenceDto.getTopic()));
 
-       sentence.setThemeTopic(themeTopicMapper.mapToEntity(sentenceDto.getThemeTopicDto()));
+       if(sentenceDto.getThemeTopicDto() != null){
+           sentence.setThemeTopic(themeTopicMapper.mapToEntity(sentenceDto.getThemeTopicDto()));
+
+       }
 
 
 

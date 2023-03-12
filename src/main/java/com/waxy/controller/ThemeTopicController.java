@@ -29,4 +29,11 @@ public class ThemeTopicController {
      return   themeTopicRepository.getAllThemeTopicByTopicId(topicId).stream()
                 .map(themeTopicMapper :: mapToDto).collect(Collectors.toSet());
     }
+
+    @GetMapping("/themeTopic/{themeId}")
+    public ThemeTopicDto getThemeTopicById(@PathVariable long themeId){
+
+        return themeTopicMapper.mapToDto(themeTopicRepository.findById(themeId).orElseThrow(() ->
+                new IllegalArgumentException("can not found themeTopic By ID "+themeId))) ;
+    }
 }
