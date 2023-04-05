@@ -1,8 +1,18 @@
 package com.waxy.request;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotBlank;
 
+@Getter
+@Setter
 public class RegisterRequest {
+
+
+    private String fullName;
+
+    private String avatar;
     @NotBlank(message = "Username can not be empty")
     private String username;
 
