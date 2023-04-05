@@ -3,7 +3,9 @@ package com.waxy.service.register;
 
 import com.waxy.database.dto.UserDTO;
 import com.waxy.database.dto.UserRoleDTO;
+import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.RegisterRepository;
+import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.request.RegisterRequest;
 import com.waxy.response.RegisterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +16,16 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
+
 public class RegisterServiceImpl implements RegisterService {
     private final PasswordEncoder passwordEncoder;
     private final RegisterRepository registerRepository;
 
-    public RegisterServiceImpl(@Autowired PasswordEncoder passwordEncoder, @Autowired RegisterRepository registerRepository) {
+    private final UserInfoRepository userInfoRepository;
+    public RegisterServiceImpl(@Autowired PasswordEncoder passwordEncoder, @Autowired RegisterRepository registerRepository,@Autowired UserInfoRepository userInfoRepository) {
         this.passwordEncoder = passwordEncoder;
         this.registerRepository = registerRepository;
+        this.userInfoRepository = userInfoRepository;
     }
 
     @Transactional
@@ -28,7 +33,15 @@ public class RegisterServiceImpl implements RegisterService {
     public RegisterResponse doRegister(RegisterRequest registerRequest) {
         Optional<UserDTO> isUserInDb = registerRepository.findByUsername(registerRequest.getUsername());
         if (isUserInDb.isPresent()) {
-            throw new RuntimeException("User has already in db");
+
+            RegisterResponse registerResponseErr = new RegisterResponse();
+
+            registerResponseErr.setMesssage("User has already in db");
+
+            return registerResponseErr;
+
+//            throw new RuntimeException("User has already in db");
+
         }
 
         UserDTO newUser = mapNewRegisterToNewUser(registerRequest);
@@ -36,6 +49,14 @@ public class RegisterServiceImpl implements RegisterService {
         RegisterResponse registerResponse = new RegisterResponse();
         registerResponse.setRegistered(true);
         registerResponse.setMesssage("User was saved");
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(newUser.getId());
+
+        userInfo.setAvatar(registerRequest.getAvatar());
+
+        userInfo.setName(registerRequest.getFullName());
+
+        userInfoRepository.save(userInfo);
         return registerResponse;
     }
 
