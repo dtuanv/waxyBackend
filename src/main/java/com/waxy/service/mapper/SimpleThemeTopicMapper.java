@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SimpleThemeTopicMapper extends ThemeTopicMapper{
     final ThemeTopicRepository themeTopicRepository;
+
+    final TopicMapper topicMapper;
     @Override
     public ThemeTopic mapToEntity(ThemeTopicDto themeTopicDto) {
         ThemeTopic themeTopic;
@@ -21,7 +23,7 @@ public class SimpleThemeTopicMapper extends ThemeTopicMapper{
             themeTopic = new ThemeTopic();
         }
 
-        themeTopic.setTopic(themeTopicDto.getTopic());
+        themeTopic.setTopic(topicMapper.mapToEntity(themeTopicDto.getTopic()));
 
         themeTopic.setName(themeTopicDto.getName());
 
@@ -34,9 +36,9 @@ public class SimpleThemeTopicMapper extends ThemeTopicMapper{
 
         ThemeTopicDto themeTopicDto = new ThemeTopicDto();
 
-        themeTopicDto.setId(themeTopicDto.getId());
+        themeTopicDto.setId(themeTopic.getId());
 
-        themeTopicDto.setTopic(themeTopic.getTopic());
+        themeTopicDto.setTopic(topicMapper.mapToDto(themeTopic.getTopic()));
 
         themeTopicDto.setName(themeTopic.getName());
         return themeTopicDto;
