@@ -1,6 +1,9 @@
 package com.waxy.security;
 
 import com.waxy.database.dto.UserDTO;
+import com.waxy.database.entity.UserInfo;
+import com.waxy.database.repository.UserInfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,13 +18,17 @@ public class SecureUser implements UserDetails {
     private String username;
 
 
+
+
     public SecureUser(UserDTO userDTO) {
        this.userRoles = new ArrayList<>();
        userDTO.getUserRoles().forEach(userRoleDTO -> this.userRoles.add(new SimpleGrantedAuthority(userRoleDTO.getRole())));
 
-       this.password = userDTO.getPassword();
+        this.password = userDTO.getPassword();
        this.username = userDTO.getUsername();
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

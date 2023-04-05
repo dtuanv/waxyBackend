@@ -1,5 +1,7 @@
 package com.waxy.controller;
 
+import com.waxy.database.entity.UserInfo;
+import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.request.LoginRequest;
 import com.waxy.response.LoginResponse;
 import com.waxy.service.login.LoginService;
@@ -21,11 +23,15 @@ public class LoginController {
         this.loginService = loginService;
     }
 
+    @Autowired
+    private UserInfoRepository userInfoRepository;
+
 
     @PostMapping("/api/login")
     @CrossOrigin
     public ResponseEntity<?> doLogin(@RequestBody @Valid LoginRequest loginRequest) {
         LoginResponse loginResponse = loginService.doLogin(loginRequest);
+
         return ResponseEntity.ok(loginResponse);
     }
 }
