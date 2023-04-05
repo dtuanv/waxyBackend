@@ -29,4 +29,8 @@ public class Sentence {
 
     @ManyToOne
     private Topic topic;
+
+    @ManyToOne
+    private ThemeTopic themeTopic;
+
 }

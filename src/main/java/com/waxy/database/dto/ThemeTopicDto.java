@@ -11,6 +11,6 @@ public class ThemeTopicDto {
 
     private String name;
 
-    private Topic topic;
+    private TopicDto topic;
 
 }
