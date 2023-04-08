@@ -25,6 +25,8 @@ public class SimpleTopicMapper extends TopicMapper{
         topic.setName(topicDto.getName());
 
         topic.setCategory(topicDto.getCategory());
+
+        topic.setUserInfoId(topicDto.getUserInfoId());
         return topic;
     }
 
@@ -37,6 +39,8 @@ public class SimpleTopicMapper extends TopicMapper{
         topicDto.setName(topic.getName());
 
         topicDto.setCategory(topic.getCategory());
+
+        topicDto.setUserInfoId(topic.getUserInfoId());
 
         return topicDto;
     }

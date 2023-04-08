@@ -25,4 +25,6 @@ public class Topic {
 
     @OneToMany(mappedBy = "topic",cascade = CascadeType.ALL)
     private Set<ThemeTopic> themeTopics;
+
+    private Long userInfoId;
 }

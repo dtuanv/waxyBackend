@@ -23,9 +23,9 @@ public class TopicController {
         topicRepository.save(topicMapper.mapToEntity(topicDto));
     }
 
-    @GetMapping("/allTopic")
-    private List<TopicDto> getAllTopic(){
-        return topicRepository.findAll().stream().map(topicMapper :: mapToDto).collect(Collectors.toList());
+    @GetMapping("/allTopic/userInfo/{userInfoId}")
+    private List<TopicDto> getAllTopic(@PathVariable long userInfoId){
+        return topicRepository.findAllTopicsByUserInfoId(userInfoId).stream().map(topicMapper :: mapToDto).collect(Collectors.toList());
     }
 
     @GetMapping("/topicBy/{topicId}")
