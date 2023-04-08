@@ -12,4 +12,6 @@ public class TopicDto {
     private String name;
 
     private String category;
+
+    private Long userInfoId;
 }
