@@ -22,4 +22,6 @@ public class Learning {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+//    private int order;
+
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -25,4 +26,6 @@ public class SentenceDto {
     private TopicDto topic;
 
     private ThemeTopicDto themeTopicDto;
+
+    private LocalDate updateAt;
 }

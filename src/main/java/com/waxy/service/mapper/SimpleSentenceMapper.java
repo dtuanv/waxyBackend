@@ -56,9 +56,6 @@ public class SimpleSentenceMapper extends SentenceMapper{
 
        }
 
-
-
-
         return sentence;
     }
 
@@ -82,6 +79,8 @@ public class SimpleSentenceMapper extends SentenceMapper{
     if(sentence.getThemeTopic() != null){
         sentenceDto.setThemeTopicDto(themeTopicMapper.mapToDto(sentence.getThemeTopic()));
     }
+
+    sentenceDto.setUpdateAt(sentence.getUpdateAt());
 
 
 

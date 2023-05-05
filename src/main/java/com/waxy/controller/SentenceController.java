@@ -80,4 +80,11 @@ public class SentenceController {
         sentenceRepository.deleteById(sentenceId);
     }
 
+    @GetMapping("/sentence/week/id/{userInfoId}")
+    private Set<SentenceDto> getSentenceInWeek(@PathVariable long userInfoId){
+        Set<SentenceDto> sentenceDtoSet = sentenceRepository.findSentenceInWeekByUserInfoId(userInfoId)
+                .stream().map(sentenceMapper :: mapToDto).collect(Collectors.toSet());
+        return sentenceDtoSet;
+    }
+
 }
