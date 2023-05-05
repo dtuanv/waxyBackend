@@ -5,13 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Sentence {
+public class Sentence extends DataObject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -32,5 +33,7 @@ public class Sentence {
 
     @ManyToOne
     private ThemeTopic themeTopic;
+
+
 
 }

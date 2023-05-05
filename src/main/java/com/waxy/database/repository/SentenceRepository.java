@@ -12,4 +12,9 @@ public interface SentenceRepository extends JpaRepository<Sentence, Long> {
 
     @Query(value=" SELECT * FROM sentence WHERE topic_id = ?1", nativeQuery = true)
     Set<Sentence> getSentenceByTopicId(long topicId);
+
+    @Query(value = "SELECT * FROM sentence AS se\n" +
+            "JOIN topic AS tp ON se.topic_id = tp.id \n" +
+            "WHERE tp.user_info_id = ?1 AND se.update_at >= now() - interval '1 week'", nativeQuery = true)
+    Set<Sentence> findSentenceInWeekByUserInfoId(long userId);
 }
