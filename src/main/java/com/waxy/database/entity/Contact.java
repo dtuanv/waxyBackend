@@ -10,18 +10,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserInfo {
+public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name;
+    private String mobil;
 
-    @Column(columnDefinition = "TEXT")
-    private String avatar;
-
-    private long userId;
-
-    private String role;
+    @Column(columnDefinition="TEXT")
+    private String message;
 }

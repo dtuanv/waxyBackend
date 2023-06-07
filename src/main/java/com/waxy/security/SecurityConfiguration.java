@@ -65,7 +65,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:8081", "http://localhost:9888","http://localhost:8080","http://localhost:8888","http://localhost:8898","https://waxyrice.de/api","https://www.waxyrice.de/api","https://waxyrice.de","https://www.waxyrice.de"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:8686", "http://localhost:9888","http://localhost:8080","http://localhost:8888","http://localhost:8898","https://waxyrice.de/api","https://www.waxyrice.de/api","https://waxyrice.de","https://www.waxyrice.de"));
         corsConfiguration.setAllowedMethods(Collections.singletonList(CorsConfiguration.ALL));
         corsConfiguration.setAllowedHeaders(Collections.singletonList(CorsConfiguration.ALL));
         corsConfiguration.setMaxAge(Duration.ofMinutes(10));
