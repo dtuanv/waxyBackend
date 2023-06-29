@@ -25,4 +25,7 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
             "SET rest_vacation = ?1\n" +
             "WHERE user_id = ?2", nativeQuery = true)
     void updateVacationInUserInfo(int restVacation, int userId);
+
+    @Query(value = "SELECT rest_vacation FROM user_info WHERE user_id = ?1", nativeQuery = true)
+    int findRestVacationByUserId(int userId);
 }

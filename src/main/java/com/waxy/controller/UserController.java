@@ -31,4 +31,9 @@ public class UserController {
     private void updateVacation(@PathVariable int userId , @PathVariable int restVacation){
         userInfoRepository.updateVacationInUserInfo(restVacation,userId);
     }
+
+    @GetMapping("/getRestVacation/user/{userId}")
+    private int getRestVacation(@PathVariable int userId){
+      return  userInfoRepository.findRestVacationByUserId(userId);
+    }
 }
