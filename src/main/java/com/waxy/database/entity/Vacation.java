@@ -10,20 +10,27 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserInfo {
-
+public class Vacation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String name;
+    private String title;
 
-    @Column(columnDefinition = "TEXT")
-    private String avatar;
+    private String details;
 
-    private long userId;
+    private String start;
 
-    private String role;
+    private String toDate;
 
-    private Integer restVacation;
+    private String bgcolor;
+
+    private String time;
+
+    private Integer duration;
+
+    private String icon;
+
+    private Integer userId;
+
 }

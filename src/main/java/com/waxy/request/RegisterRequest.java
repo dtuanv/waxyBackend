@@ -13,6 +13,8 @@ public class RegisterRequest {
     private String fullName;
 
     private String avatar;
+
+    private int restVacation;
     @NotBlank(message = "Username can not be empty")
     private String username;
 
