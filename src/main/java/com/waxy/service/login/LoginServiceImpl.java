@@ -33,17 +33,13 @@ public class LoginServiceImpl implements LoginService {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         SecureUser userDetails = (SecureUser) authentication.getPrincipal();
-
-
-
         String jwtToken = JwtUtil.generateJwtToken(userDetails.getUsername());
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setJwtToken(jwtToken);
+        UserInfo  userInfo = userInfoRepository.findByUsername(userDetails.getUsername());
 
-        UserInfo  user = userInfoRepository.findByUsername(userDetails.getUsername());
-
-        if(user != null){
-            loginResponse.setUserInfo(user);
+        if(userInfo != null){
+            loginResponse.setUserInfo(userInfo);
         }
 
         return loginResponse;

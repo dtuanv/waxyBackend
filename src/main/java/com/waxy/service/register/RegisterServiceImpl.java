@@ -56,6 +56,8 @@ public class RegisterServiceImpl implements RegisterService {
 
         userInfo.setName(registerRequest.getFullName());
 
+        userInfo.setRestVacation(registerRequest.getRestVacation());
+
         userInfoRepository.save(userInfo);
         return registerResponse;
     }
