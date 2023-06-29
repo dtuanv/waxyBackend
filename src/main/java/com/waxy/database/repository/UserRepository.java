@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<UserDTO, Long> {
     @Query("From UserDTO WHERE username=?1")
     Optional<UserDTO> findByUsername(String username);
 
+
+
 }

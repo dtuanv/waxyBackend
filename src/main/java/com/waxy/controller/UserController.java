@@ -4,6 +4,7 @@ import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.service.user.UserInfoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -24,5 +25,10 @@ public class UserController {
         return userInfoRepository.findById(userInfoId).orElseThrow(() -> new IllegalArgumentException(
                 String.format("UserInfo can be not found by ID : "+ userInfoId)
         ));
+    }
+
+    @GetMapping("/updateVacation/userId/{userId}/restVacation/{restVacation}")
+    private void updateVacation(@PathVariable int userId , @PathVariable int restVacation){
+        userInfoRepository.updateVacationInUserInfo(restVacation,userId);
     }
 }
