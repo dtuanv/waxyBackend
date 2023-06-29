@@ -4,12 +4,11 @@ import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.service.user.UserInfoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class UserController {
+public class UserInfoController {
 
     private final UserInfoService userInfoService;
     private final UserInfoRepository userInfoRepository;
