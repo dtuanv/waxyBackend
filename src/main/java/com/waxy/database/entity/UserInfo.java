@@ -3,6 +3,7 @@ package com.waxy.database.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.relational.core.sql.In;
 
 import javax.persistence.*;
 
@@ -26,4 +27,6 @@ public class UserInfo {
     private String role;
 
     private Integer restVacation;
+
+    private Integer businessId;
 }

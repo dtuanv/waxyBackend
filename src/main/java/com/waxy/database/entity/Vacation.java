@@ -33,4 +33,6 @@ public class Vacation {
 
     private Integer userId;
 
+    private Integer businessId;
+
 }

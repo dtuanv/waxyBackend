@@ -58,6 +58,8 @@ public class RegisterServiceImpl implements RegisterService {
 
         userInfo.setRestVacation(registerRequest.getRestVacation());
 
+        userInfo.setBusinessId(registerRequest.getBusinessId());
+
         userInfoRepository.save(userInfo);
         return registerResponse;
     }

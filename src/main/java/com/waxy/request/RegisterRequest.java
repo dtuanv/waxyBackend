@@ -15,6 +15,7 @@ public class RegisterRequest {
     private String avatar;
 
     private int restVacation;
+    private int businessId;
     @NotBlank(message = "Username can not be empty")
     private String username;
 

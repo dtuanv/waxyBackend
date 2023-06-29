@@ -21,8 +21,10 @@ public class VacationController {
 //        System.out.println("save Vacation");
     }
 
-    @GetMapping("/getVacations")
-    private Set<Vacation> getVacations(){
-        return vacationRepository.findAll().stream().collect(Collectors.toSet());
+    @GetMapping("/getVacations/business/{businessId}")
+    private Set<Vacation> getVacations(@PathVariable int businessId){
+        return vacationRepository.findAllByBusinessId(businessId).stream().collect(Collectors.toSet());
+
+
     }
 }
