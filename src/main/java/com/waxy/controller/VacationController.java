@@ -5,6 +5,7 @@ import com.waxy.database.repository.VacationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,25 @@ public class VacationController {
     @GetMapping("/getVacations/business/{businessId}")
     private Set<Vacation> getVacations(@PathVariable int businessId){
         return vacationRepository.findAllByBusinessId(businessId).stream().collect(Collectors.toSet());
+    }
 
+    @GetMapping("/numNotConfirmedVacation/business/{businessId}")
+    private int countVacation(@PathVariable int businessId){
+        return vacationRepository.countVacationIsNotConfirm(businessId);
+    }
+
+    @GetMapping("/getNotConfirmedVacation/business/{businessId}")
+    private LinkedHashSet<Vacation> findNotConfirmedVacation(@PathVariable int businessId){
+        return vacationRepository.findVacationIsNotConfirm(businessId);
+    }
+
+    @GetMapping("/updateVacation/vacation/{vacationId}/column/{column}")
+    private void updateVacation(@PathVariable long vacationId, @PathVariable String column ){
+        if(column.equals("is_rejected")){
+            vacationRepository.updateVacationColumnIsRejected(vacationId);
+        }else {
+            vacationRepository.updateVacationColumnIsConfirmed(vacationId);
+        }
 
     }
 }

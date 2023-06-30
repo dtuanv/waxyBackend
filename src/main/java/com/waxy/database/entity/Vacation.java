@@ -35,4 +35,10 @@ public class Vacation {
 
     private Integer businessId;
 
+    private Boolean isConfirmed;
+
+    private Boolean isRejected;
+
+    private String message;
+
 }
