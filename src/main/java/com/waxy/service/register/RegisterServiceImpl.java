@@ -60,6 +60,8 @@ public class RegisterServiceImpl implements RegisterService {
 
         userInfo.setBusinessId(registerRequest.getBusinessId());
 
+        userInfo.setRole("user");
+
         userInfoRepository.save(userInfo);
         return registerResponse;
     }
