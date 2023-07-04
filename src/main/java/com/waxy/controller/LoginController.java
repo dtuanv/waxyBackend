@@ -1,9 +1,8 @@
 package com.waxy.controller;
 
-import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.request.LoginRequest;
-import com.waxy.response.LoginResponse;
+import com.waxy.security.response.LoginResponse;
 import com.waxy.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

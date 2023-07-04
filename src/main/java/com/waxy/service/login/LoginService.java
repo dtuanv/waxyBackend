@@ -2,7 +2,7 @@ package com.waxy.service.login;
 
 
 import com.waxy.request.LoginRequest;
-import com.waxy.response.LoginResponse;
+import com.waxy.security.response.LoginResponse;
 
 public interface LoginService {
 

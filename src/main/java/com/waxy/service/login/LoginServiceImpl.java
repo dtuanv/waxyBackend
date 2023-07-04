@@ -3,7 +3,7 @@ package com.waxy.service.login;
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.request.LoginRequest;
-import com.waxy.response.LoginResponse;
+import com.waxy.security.response.LoginResponse;
 import com.waxy.security.SecureUser;
 import com.waxy.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
