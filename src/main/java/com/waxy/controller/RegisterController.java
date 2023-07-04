@@ -2,7 +2,7 @@ package com.waxy.controller;
 
 
 import com.waxy.request.RegisterRequest;
-import com.waxy.response.RegisterResponse;
+import com.waxy.security.response.RegisterResponse;
 import com.waxy.service.register.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

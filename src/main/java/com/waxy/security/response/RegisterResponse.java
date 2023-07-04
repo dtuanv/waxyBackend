@@ -1,4 +1,4 @@
-package com.waxy.response;
+package com.waxy.security.response;
 
 public class RegisterResponse {
     private boolean isRegistered;

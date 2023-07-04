@@ -1,4 +1,4 @@
-package com.waxy.response;
+package com.waxy.security.response;
 
 import com.waxy.database.entity.UserInfo;
 

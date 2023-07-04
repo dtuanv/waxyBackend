@@ -7,7 +7,7 @@ import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.RegisterRepository;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.request.RegisterRequest;
-import com.waxy.response.RegisterResponse;
+import com.waxy.security.response.RegisterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
