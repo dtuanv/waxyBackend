@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -19,7 +19,9 @@ public class Workplan {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="workplan_id")
-    private Set<StaffItem> staffItemSet;
+//    private Set<StaffItem> staffItemSet = new LinkedHashSet<>();
+    private List<StaffItem> staffItemSet = new ArrayList<>();
+
 
     @Column(columnDefinition="TEXT")
     private String notification;

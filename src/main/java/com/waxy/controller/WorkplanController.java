@@ -8,6 +8,8 @@ import com.waxy.service.mapper.WorkplanMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,12 +34,17 @@ public class WorkplanController {
 //                }
 //
 //            }
+        if(workplan.getId() > 0){
+            workplanRepository.deleteById(workplan.getId());
+            System.out.println("wp deleted");
+        }
+        System.out.println("id "+ workplan.getId());
         workplanRepository.save(workplan);
     }
 
     @GetMapping("/allWorkplan/{businessId}")
-    private Set<WorkplanDto> getAllWorkplanByBusinessId(@PathVariable int businessId){
-        return workplanRepository.findWorkplanByBusinessId(businessId).stream().map(workplanMapper :: mapToDto).collect(Collectors.toSet());
+    private List<WorkplanDto> getAllWorkplanByBusinessId(@PathVariable int businessId){
+        return workplanRepository.findWorkplanByBusinessId(businessId).stream().map(workplanMapper :: mapToDto).collect(Collectors.toList());
     }
 
 
