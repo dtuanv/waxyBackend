@@ -16,7 +16,6 @@ public class WorkplanSaveService {
         workplanToSave.setBusinessId(workplan.getBusinessId());
         Agenda agenda = new Agenda();
 
-        agenda.setMon(workplan.getAgenda().getMon());
 
 
     }

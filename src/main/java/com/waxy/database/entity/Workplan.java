@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,8 +17,9 @@ public class Workplan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    private Agenda agenda;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="workplan_id")
+    private Set<StaffItem> staffItemSet;
 
     @Column(columnDefinition="TEXT")
     private String notification;

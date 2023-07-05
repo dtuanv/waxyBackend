@@ -17,8 +17,11 @@ public class StaffItem {
 
     private String title;
 
-    private int iDay;
+    private int indexDay;
+
+    private int staffId;
 
     @ManyToOne
-    Agenda agenda;
+    private Workplan workplan;
+
 }
