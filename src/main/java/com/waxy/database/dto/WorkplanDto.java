@@ -4,6 +4,8 @@ import com.waxy.database.entity.StaffItem;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -16,9 +18,12 @@ public class WorkplanDto {
 
     private int workweek;
 
-    private Set<StaffItemDto> staffItemSet;
+    private List<StaffItemDto> staffItemSet ;
 
     private int businessId;
+
+
+    private AgendaDto agenda;
 
 
 }
