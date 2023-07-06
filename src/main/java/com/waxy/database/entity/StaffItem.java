@@ -21,6 +21,8 @@ public class StaffItem {
 
     private int staffId;
 
+    private String time;
+
     @ManyToOne
     private Workplan workplan;
 
