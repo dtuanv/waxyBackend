@@ -14,4 +14,6 @@ public class StaffItemDto {
 
     private int staffId;
 
+    private String time;
+
 }
