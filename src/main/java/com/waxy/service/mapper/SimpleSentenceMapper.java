@@ -31,7 +31,7 @@ public class SimpleSentenceMapper extends SentenceMapper{
         Sentence  sentence;
         if( sentenceDto.getId() > 0){
            sentence =sentenceRepository.findById(sentenceDto.getId()).orElseThrow(()
-                    -> new IllegalArgumentException(String.format("can not findSentence! ID: "+sentenceDto.getId())));
+                    -> new IllegalArgumentException(String.format("can not find findSentence! ID: "+sentenceDto.getId())));
         }else {
            sentence = new Sentence();
 

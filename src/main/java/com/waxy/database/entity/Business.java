@@ -17,5 +17,12 @@ public class Business {
 
     private String name;
 
+    private String owner;
+
+    private String address;
+
+    private String status;
+
+    private Integer numberUsers;
 
 }
