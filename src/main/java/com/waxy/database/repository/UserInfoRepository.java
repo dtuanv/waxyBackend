@@ -32,4 +32,7 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
 
     @Query(value = "SELECT rest_vacation FROM user_info WHERE user_id = ?1", nativeQuery = true)
     int findRestVacationByUserId(int userId);
+
+    @Query(value="SELECT count(*) FROM user_info WHERE business_id = ?1", nativeQuery = true)
+    int countUserOfBusiness(long businessId);
 }
