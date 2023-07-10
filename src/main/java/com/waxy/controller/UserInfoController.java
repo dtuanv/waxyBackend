@@ -1,10 +1,13 @@
 package com.waxy.controller;
 
+import com.waxy.database.entity.Business;
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.service.user.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,5 +37,10 @@ public class UserInfoController {
     @GetMapping("/getRestVacation/user/{userId}")
     private int getRestVacation(@PathVariable int userId){
       return  userInfoRepository.findRestVacationByUserId(userId);
+    }
+
+    @GetMapping("/getUserInfo/business/{businessId}")
+    private List<UserInfo> getBusinessByBusinessId(@PathVariable long businessId){
+        return userInfoRepository.findUserInfoByBusinessId(businessId);
     }
 }
