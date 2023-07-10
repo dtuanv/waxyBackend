@@ -43,4 +43,15 @@ public class UserInfoController {
     private List<UserInfo> getBusinessByBusinessId(@PathVariable long businessId){
         return userInfoRepository.findUserInfoByBusinessId(businessId);
     }
+
+    @PostMapping("/updateUserRole")
+    private void updateUserInfoRole(@RequestBody UserInfo userInfo){
+        System.out.println("userInfo.role" + userInfo.getRole());
+        if(userInfo.getRole().equals("business_admin")){
+            userInfoRepository.updateUserInfoRole("user", userInfo.getId());
+        }
+        if(userInfo.getRole().equals("user")){
+            userInfoRepository.updateUserInfoRole("business_admin", userInfo.getId());
+        }
+    }
 }
