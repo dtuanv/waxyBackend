@@ -5,6 +5,7 @@ import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.request.LoginRequest;
 import com.waxy.security.response.LoginResponse;
 import com.waxy.security.SecureUser;
+import com.waxy.service.mapper.UserInfoMapper;
 import com.waxy.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginServiceImpl implements LoginService {
     private final AuthenticationManager authenticationManager;
-
+    @Autowired
+    private  UserInfoMapper userInfoMapper;
     private UserInfo userInfo;
 
     @Autowired
@@ -38,19 +40,20 @@ public class LoginServiceImpl implements LoginService {
         loginResponse.setJwtToken(jwtToken);
         UserInfo  userInfo = userInfoRepository.findByUsername(userDetails.getUsername());
 
+
         if(userInfo != null){
-            loginResponse.setUserInfo(userInfo);
+            loginResponse.setUserInfo(userInfoMapper.mapToDto(userInfo));
         }
 
         return loginResponse;
     }
 
 
-    public UserInfo getUserInfo() {
-        return this.userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo){
-        this.userInfo = userInfo;
-    }
+//    public UserInfo getUserInfo() {
+//        return this.userInfo;
+//    }
+//
+//    public void setUserInfo(UserInfo userInfo){
+//        this.userInfo = userInfo;
+//    }
 }

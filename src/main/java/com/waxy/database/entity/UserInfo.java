@@ -28,5 +28,7 @@ public class UserInfo {
 
     private Integer restVacation;
 
-    private Integer businessId;
+    private Long businessId;
+
+    private String department;
 }

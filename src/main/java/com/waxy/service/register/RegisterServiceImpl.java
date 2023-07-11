@@ -36,7 +36,7 @@ public class RegisterServiceImpl implements RegisterService {
 
             RegisterResponse registerResponseErr = new RegisterResponse();
 
-            registerResponseErr.setMesssage("User has already in db");
+            registerResponseErr.setMesssage("User has already in db. Please use another username");
 
             return registerResponseErr;
 
@@ -58,9 +58,11 @@ public class RegisterServiceImpl implements RegisterService {
 
         userInfo.setRestVacation(registerRequest.getRestVacation());
 
-        userInfo.setBusinessId(registerRequest.getBusinessId());
+        userInfo.setBusinessId((long) registerRequest.getBusinessId());
 
         userInfo.setRole(registerRequest.getRole());
+
+        userInfo.setDepartment(registerRequest.getDepartment());
 
         userInfoRepository.save(userInfo);
         return registerResponse;
