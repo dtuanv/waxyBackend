@@ -25,4 +25,6 @@ public class Business {
 
     private Integer numberUsers;
 
+    private String businessArea;
+
 }

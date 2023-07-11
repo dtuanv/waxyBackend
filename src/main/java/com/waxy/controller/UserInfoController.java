@@ -3,6 +3,7 @@ package com.waxy.controller;
 import com.waxy.database.entity.Business;
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.UserInfoRepository;
+import com.waxy.database.repository.UserRepository;
 import com.waxy.service.user.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,30 @@ public class UserInfoController {
     private final UserInfoService userInfoService;
     private final UserInfoRepository userInfoRepository;
 
+    private final UserRepository userRepository;
+
     @PostMapping("/updateUserInfo")
     private void updateUserInfo(@RequestBody UserInfo userInfo){
+        UserInfo userInfoUpdate;
+        if(userInfo.getId() > 0){
+            userInfoUpdate = userInfoRepository.findById(userInfo.getId()).orElseThrow(() ->
+                    new IllegalArgumentException(String.format("UserInfo can not be found By ID: "+userInfo.getId() )));
+        }else {
+            userInfoUpdate = new UserInfo();
+        }
+
+        userInfoUpdate.setUserId(userInfo.getUserId());
+        userInfoUpdate.setDepartment(userInfo.getDepartment());
+        userInfoUpdate.setAvatar(userInfo.getAvatar());
+
+        userInfoUpdate.setBusinessId(userInfo.getBusinessId());
+
+        userInfoUpdate.setName(userInfo.getName());
+
+        userInfoUpdate.setRole(userInfo.getRole());
+
+        userInfoUpdate.setBusinessId(userInfo.getBusinessId());
+
 
         userInfoService.saveUserInfo(userInfo);
     }
@@ -54,4 +77,12 @@ public class UserInfoController {
             userInfoRepository.updateUserInfoRole("business_admin", userInfo.getId());
         }
     }
+
+    @DeleteMapping("/deleteUserInfo/{userInfoId}/user/{userId}")
+    private void deleteUserInfo(@PathVariable long userInfoId, @PathVariable long userId){
+        userInfoRepository.deleteById(userInfoId);
+        userRepository.deleteById(userId);
+    }
+
+
 }
