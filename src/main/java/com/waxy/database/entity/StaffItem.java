@@ -23,6 +23,8 @@ public class StaffItem {
 
     private String time;
 
+    private String department;
+
     @ManyToOne
     private Workplan workplan;
 

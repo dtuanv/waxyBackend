@@ -19,6 +19,8 @@ public class SimpleStaffItemMapper extends StaffItemMapper{
         staffItemDto.setId(staffItem.getId());
 
         staffItemDto.setTime(staffItem.getTime());
+
+        staffItemDto.setDepartment(staffItem.getDepartment());
         return staffItemDto;
     }
 }
