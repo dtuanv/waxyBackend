@@ -16,4 +16,5 @@ public class StaffItemDto {
 
     private String time;
 
+    private String department;
 }
