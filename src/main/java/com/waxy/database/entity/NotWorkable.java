@@ -4,13 +4,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Vacation {
+public class NotWorkable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,29 +21,17 @@ public class Vacation {
     private String title;
 
     private String details;
-
     private String start;
 
     private String toDate;
 
     private String bgcolor;
 
-    private String time;
-
     private Integer duration;
-
-    private String icon;
 
     private Integer userId;
 
     private Integer businessId;
 
-    private Boolean isConfirmed;
-
-    private Boolean isRejected;
-
-    private String message;
-
     private String department;
-
 }
