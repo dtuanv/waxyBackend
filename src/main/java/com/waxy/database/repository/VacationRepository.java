@@ -32,4 +32,7 @@ public interface VacationRepository extends JpaRepository<Vacation, Long> {
     @Modifying
     @Query(value="UPDATE vacation SET is_Confirmed = true WHERE id = ?1", nativeQuery = true)
     void updateVacationColumnIsConfirmed(long vacationId);
+
+    @Query(value="SELECT * FROM vacation WHERE business_id =?1 AND to_date >= ?2 AND is_confirmed = true", nativeQuery = true)
+    Set<Vacation> findNotWorkableBecauseOfVacation(long businessId, String start);
 }
