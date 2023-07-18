@@ -51,6 +51,12 @@ public class UserInfoController {
                 String.format("UserInfo can be not found by ID : "+ userInfoId)
         ));
     }
+    @GetMapping("/userInfo/id/{userInfoId}/userId/{userId}")
+    private UserInfo getUserInfoByIdCheck(@PathVariable long userInfoId){
+        return userInfoRepository.findById(userInfoId).orElseThrow(() -> new IllegalArgumentException(
+                String.format("UserInfo can be not found by ID : "+ userInfoId)
+        ));
+    }
 
     @GetMapping("/updateVacation/userId/{userId}/restVacation/{restVacation}")
     private void updateVacation(@PathVariable int userId , @PathVariable int restVacation){
