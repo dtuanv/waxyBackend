@@ -1,8 +1,10 @@
 package com.waxy.security;
 
+import com.waxy.database.repository.UserRepository;
 import com.waxy.utils.JwtUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +21,8 @@ import java.io.IOException;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class.getSimpleName());
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * Intercept the all incoming requests (+)
@@ -40,13 +44,26 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         try {
             String jwt = parseJwt(request);
             if (jwt != null && JwtUtil.validateJwtToken(jwt)) {
+                boolean isOk = true;
                 String username = JwtUtil.getUsernameFromJwtToken(jwt);
-                UserDetails userDetails = myUserDetailsService.loadUserByUsername(username);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                if(request.getServletPath().contains("/userInfo/id/") ){
+                 char userIdChar = request.getServletPath().charAt(request.getServletPath().length() - 1);
+                 long userId = Character.getNumericValue(userIdChar);
+                    if(!username.equals(userRepository.findUserNameById(userId))){
+                        System.out.println("Toang");
+                        isOk = false;
+                        return;
+                    }
+                }
+                if(isOk){
+                    UserDetails userDetails = myUserDetailsService.loadUserByUsername(username);
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                            userDetails, null, userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+
             }
         } catch (Exception e) {
             logger.error("Exception: ", e);
