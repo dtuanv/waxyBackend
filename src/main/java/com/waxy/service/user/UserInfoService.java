@@ -26,6 +26,10 @@ public class UserInfoService {
 
         userInfoUpdate.setAvatar(userInfo.getAvatar());
 
+        userInfoUpdate.setBirthday(userInfo.getBirthday());
+
+        userInfoUpdate.setPosition(userInfo.getPosition());
+
         userInfoRepository.save(userInfoUpdate);
     }
 

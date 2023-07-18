@@ -27,4 +27,8 @@ public class UserInfoDto {
     private String businessArea;
 
     private String department;
+
+    private String birthday;
+
+    private String position;
 }

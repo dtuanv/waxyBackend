@@ -19,6 +19,10 @@ public class RegisterRequest {
 
     private String department;
 
+    private String birthday;
+
+    private String position;
+
     private String role;
     @NotBlank(message = "Username can not be empty")
     private String username;
