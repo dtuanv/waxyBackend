@@ -64,6 +64,10 @@ public class RegisterServiceImpl implements RegisterService {
 
         userInfo.setDepartment(registerRequest.getDepartment());
 
+        userInfo.setBirthday(registerRequest.getBirthday());
+
+        userInfo.setPosition(registerRequest.getPosition());
+
         userInfoRepository.save(userInfo);
         return registerResponse;
     }

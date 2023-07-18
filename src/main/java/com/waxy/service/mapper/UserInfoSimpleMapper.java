@@ -35,6 +35,10 @@ public class UserInfoSimpleMapper extends UserInfoMapper{
 
         dto.setDepartment(userInfo.getDepartment());
 
+        dto.setBirthday(userInfo.getBirthday());
+
+        dto.setPosition(userInfo.getPosition());
+
         return dto;
     }
 

@@ -31,4 +31,8 @@ public class UserInfo {
     private Long businessId;
 
     private String department;
+
+    private String birthday;
+
+    private String position;
 }
