@@ -47,10 +47,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 boolean isOk = true;
                 String username = JwtUtil.getUsernameFromJwtToken(jwt);
                 if(request.getServletPath().contains("/userInfo/id/") ){
+                    System.out.println("request.getServletPath() "+request.getServletPath());
                  char userIdChar = request.getServletPath().charAt(request.getServletPath().length() - 1);
                  long userId = Character.getNumericValue(userIdChar);
                     if(!username.equals(userRepository.findUserNameById(userId))){
-                        System.out.println("Toang");
+                        System.out.println("Toang user "+userRepository.findUserNameById(userId));
                         isOk = false;
                         return;
                     }

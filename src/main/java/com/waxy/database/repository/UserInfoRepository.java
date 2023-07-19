@@ -8,10 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
 
+    @Query(value="SELECT * FROM user_info WHERE business_id = ?1 AND  birthday LIKE ?2",nativeQuery = true)
+    Set<UserInfo> findUserInfoTodayHasBirthday(long businessId,String today);
     @Query(value="SELECT * FROM user_info WHERE business_id = ?1 AND role != 'admin' ", nativeQuery = true)
     List<UserInfo> findUserInfoByBusinessId(long businessId);
     @Query(value= "SELECT * FROM user_info WHERE user_id = ?1", nativeQuery = true)

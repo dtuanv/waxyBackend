@@ -2,13 +2,17 @@ package com.waxy.controller;
 
 import com.waxy.database.entity.Business;
 import com.waxy.database.entity.UserInfo;
+import com.waxy.database.entity.WishMessage;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.database.repository.UserRepository;
+import com.waxy.database.repository.WishMessageRepository;
 import com.waxy.service.user.UserInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,6 +20,8 @@ public class UserInfoController {
 
     private final UserInfoService userInfoService;
     private final UserInfoRepository userInfoRepository;
+
+    private final WishMessageRepository wishMessageRepository;
 
     private final UserRepository userRepository;
 
@@ -45,6 +51,22 @@ public class UserInfoController {
         userInfoService.saveUserInfo(userInfo);
     }
 
+    @GetMapping("/business/{businessId}/checkTodayIsBirthdayOfWhom/{today}/fromUser/{fromUserId}")
+    private Set<UserInfo> getUserInfoHasBirthday(@PathVariable long businessId,@PathVariable String today, @PathVariable long fromUserId){
+        Set<UserInfo> userInfoSet = userInfoRepository.findUserInfoTodayHasBirthday(businessId,today);
+
+        userInfoSet = userInfoSet.stream().filter(userInfo -> checkUserHasSendedMessage(fromUserId,userInfo.getUserId(),today)).collect(Collectors.toSet());
+            return userInfoSet;
+    }
+
+    private boolean checkUserHasSendedMessage(long fromUserId, long birthUserId, String today){
+        int size = wishMessageRepository.checkWishMessageFromUser(fromUserId,birthUserId,today).stream().collect(Collectors.toSet()).size() ;
+        if(size == 0){
+            return true;
+        }else {
+            return false ;
+        }
+    }
     @GetMapping("/userInfo/id/{userInfoId}")
     private UserInfo getUserInfoById(@PathVariable long userInfoId){
         return userInfoRepository.findById(userInfoId).orElseThrow(() -> new IllegalArgumentException(
