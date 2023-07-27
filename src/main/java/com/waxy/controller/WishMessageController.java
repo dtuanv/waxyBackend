@@ -21,4 +21,9 @@ public class WishMessageController {
     private Set<WishMessage> getWishMessageByBUserId(@PathVariable long bUserId){
         return wishMessageRepository.findWishMessageByBUserId(bUserId);
     }
+
+    @GetMapping("/wishMessageToMe/bUserId/{bUserId}/today/{today}")
+    private Set<WishMessage> getWishMessageToMe(@PathVariable long bUserId, @PathVariable String today) {
+      return   wishMessageRepository.findWishMessageToMe(today, bUserId);
+    }
 }

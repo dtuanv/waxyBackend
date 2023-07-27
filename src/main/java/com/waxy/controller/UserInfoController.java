@@ -55,11 +55,11 @@ public class UserInfoController {
     private Set<UserInfo> getUserInfoHasBirthday(@PathVariable long businessId,@PathVariable String today, @PathVariable long fromUserId){
         Set<UserInfo> userInfoSet = userInfoRepository.findUserInfoTodayHasBirthday(businessId,today);
 
-        userInfoSet = userInfoSet.stream().filter(userInfo -> checkUserHasSendedMessage(fromUserId,userInfo.getUserId(),today)).collect(Collectors.toSet());
+        userInfoSet = userInfoSet.stream().filter(userInfo -> checkUserHasSentMessage(fromUserId,userInfo.getUserId(),today)).collect(Collectors.toSet());
             return userInfoSet;
     }
 
-    private boolean checkUserHasSendedMessage(long fromUserId, long birthUserId, String today){
+    private boolean checkUserHasSentMessage(long fromUserId, long birthUserId, String today){
         int size = wishMessageRepository.checkWishMessageFromUser(fromUserId,birthUserId,today).stream().collect(Collectors.toSet()).size() ;
         if(size == 0){
             return true;
