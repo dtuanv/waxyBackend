@@ -46,11 +46,19 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             if (jwt != null && JwtUtil.validateJwtToken(jwt)) {
                 boolean isOk = true;
                 String username = JwtUtil.getUsernameFromJwtToken(jwt);
-                if(request.getServletPath().contains("/userInfo/id/") ){
-                    System.out.println("request.getServletPath() "+request.getServletPath());
-                 char userIdChar = request.getServletPath().charAt(request.getServletPath().length() - 1);
-                 long userId = Character.getNumericValue(userIdChar);
-                    if(!username.equals(userRepository.findUserNameById(userId))){
+                String requestPath = request.getServletPath();
+                if(requestPath.contains("/userInfo/id/") ){
+                    long userId = 0;
+                    // Define the path variable identifier
+                    String pathVariableIdentifier = "/userId/";
+                    int startIndex = requestPath.lastIndexOf(pathVariableIdentifier);
+                   if(startIndex != -1){
+                       //Extract substring that contain the path variable
+                       String subStringWithPathVariable = requestPath.substring(startIndex+pathVariableIdentifier.length());
+                         userId = Long.parseLong(subStringWithPathVariable);
+                   }
+
+                    if(userId > 0 && !username.equals(userRepository.findUserNameById(userId))){
                         System.out.println("Toang user "+userRepository.findUserNameById(userId));
                         isOk = false;
                         return;
