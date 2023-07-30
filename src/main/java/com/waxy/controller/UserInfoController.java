@@ -53,8 +53,14 @@ public class UserInfoController {
 
     @GetMapping("/business/{businessId}/checkTodayIsBirthdayOfWhom/{today}/fromUser/{fromUserId}")
     private Set<UserInfo> getUserInfoHasBirthday(@PathVariable long businessId,@PathVariable String today, @PathVariable long fromUserId){
-        Set<UserInfo> userInfoSet = userInfoRepository.findUserInfoTodayHasBirthday(businessId,today);
-
+        String[] todayArr = today.split("\\.");
+        int day = Integer.parseInt(todayArr[0]) ;
+        int month = Integer.parseInt(todayArr[1]) ;
+        System.out.println("Month "+month);
+        System.out.println("day "+day);
+        System.out.println("businessId "+businessId);
+        Set<UserInfo> userInfoSet = userInfoRepository.findUserInfoTodayHasBirthday(businessId,month,day);
+        System.out.println("userInfoSet "+userInfoSet.size());
         userInfoSet = userInfoSet.stream().filter(userInfo -> checkUserHasSentMessage(fromUserId,userInfo.getUserId(),today)).collect(Collectors.toSet());
             return userInfoSet;
     }

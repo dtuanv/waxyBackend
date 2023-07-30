@@ -24,7 +24,7 @@ public class WishMessage {
 
     private String message;
 
-    private String today;
+    private String createAt;
 
     private String fromUser;
 
