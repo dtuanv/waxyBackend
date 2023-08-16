@@ -23,6 +23,8 @@ public class RegisterRequest {
 
     private String position;
 
+    private String language;
+
     private String role;
     @NotBlank(message = "Username can not be empty")
     private String username;

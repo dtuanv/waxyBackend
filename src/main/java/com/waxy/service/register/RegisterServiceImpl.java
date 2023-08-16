@@ -68,6 +68,8 @@ public class RegisterServiceImpl implements RegisterService {
 
         userInfo.setPosition(registerRequest.getPosition());
 
+        userInfo.setLanguage(registerRequest.getLanguage());
+
         userInfoRepository.save(userInfo);
         return registerResponse;
     }

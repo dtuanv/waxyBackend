@@ -27,27 +27,6 @@ public class UserInfoController {
 
     @PostMapping("/updateUserInfo")
     private void updateUserInfo(@RequestBody UserInfo userInfo){
-        UserInfo userInfoUpdate;
-        if(userInfo.getId() > 0){
-            userInfoUpdate = userInfoRepository.findById(userInfo.getId()).orElseThrow(() ->
-                    new IllegalArgumentException(String.format("UserInfo can not be found By ID: "+userInfo.getId() )));
-        }else {
-            userInfoUpdate = new UserInfo();
-        }
-
-        userInfoUpdate.setUserId(userInfo.getUserId());
-        userInfoUpdate.setDepartment(userInfo.getDepartment());
-        userInfoUpdate.setAvatar(userInfo.getAvatar());
-
-        userInfoUpdate.setBusinessId(userInfo.getBusinessId());
-
-        userInfoUpdate.setName(userInfo.getName());
-
-        userInfoUpdate.setRole(userInfo.getRole());
-
-        userInfoUpdate.setBusinessId(userInfo.getBusinessId());
-
-
         userInfoService.saveUserInfo(userInfo);
     }
 
@@ -56,11 +35,7 @@ public class UserInfoController {
         String[] todayArr = today.split("\\.");
         int day = Integer.parseInt(todayArr[0]) ;
         int month = Integer.parseInt(todayArr[1]) ;
-        System.out.println("Month "+month);
-        System.out.println("day "+day);
-        System.out.println("businessId "+businessId);
         Set<UserInfo> userInfoSet = userInfoRepository.findUserInfoTodayHasBirthday(businessId,month,day);
-        System.out.println("userInfoSet "+userInfoSet.size());
         userInfoSet = userInfoSet.stream().filter(userInfo -> checkUserHasSentMessage(fromUserId,userInfo.getUserId(),today)).collect(Collectors.toSet());
             return userInfoSet;
     }
