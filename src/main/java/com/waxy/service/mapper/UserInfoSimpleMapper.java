@@ -39,6 +39,8 @@ public class UserInfoSimpleMapper extends UserInfoMapper{
 
         dto.setPosition(userInfo.getPosition());
 
+        dto.setLanguage(userInfo.getLanguage());
+
         return dto;
     }
 

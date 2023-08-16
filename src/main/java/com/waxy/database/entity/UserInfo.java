@@ -35,4 +35,6 @@ public class UserInfo {
     private String birthday;
 
     private String position;
+
+    private String language;
 }

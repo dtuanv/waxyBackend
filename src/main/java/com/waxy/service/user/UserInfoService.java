@@ -22,13 +22,22 @@ public class UserInfoService {
 
         userInfoUpdate.setUserId(userInfo.getUserId());
 
-        userInfoUpdate.setName(userInfo.getName());
+        userInfoUpdate.setDepartment(userInfo.getDepartment());
 
         userInfoUpdate.setAvatar(userInfo.getAvatar());
+
+        userInfoUpdate.setBusinessId(userInfo.getBusinessId());
+
+        userInfoUpdate.setName(userInfo.getName());
+
+        userInfoUpdate.setRole(userInfo.getRole());
 
         userInfoUpdate.setBirthday(userInfo.getBirthday());
 
         userInfoUpdate.setPosition(userInfo.getPosition());
+
+        userInfoUpdate.setLanguage(userInfo.getLanguage());
+
 
         userInfoRepository.save(userInfoUpdate);
     }
