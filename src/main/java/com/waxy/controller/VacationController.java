@@ -37,6 +37,10 @@ public class VacationController {
         return vacationRepository.findVacationIsNotConfirm(businessId);
     }
 
+    @GetMapping("/getNotConfirmedVacation/userInfoId/{userInfoId}")
+    private LinkedHashSet<Vacation> findNotConfirmedVacationByUserInfoId(@PathVariable int userInfoId){
+        return vacationRepository.findVacationIsNotConfirmByUserInfoId(userInfoId);
+    }
     @GetMapping("/updateVacation/vacation/{vacationId}/column/{column}")
     private void updateVacation(@PathVariable long vacationId, @PathVariable String column ){
         if(column.equals("is_rejected")){

@@ -41,6 +41,8 @@ public class UserInfoSimpleMapper extends UserInfoMapper{
 
         dto.setLanguage(userInfo.getLanguage());
 
+        dto.setBusinessName(business.getName());
+
         return dto;
     }
 

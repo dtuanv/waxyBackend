@@ -33,4 +33,6 @@ public class UserInfoDto {
     private String position;
 
     private String language;
+
+    private String businessName;
 }

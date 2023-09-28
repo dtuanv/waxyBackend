@@ -31,7 +31,7 @@ public class Vacation {
 
     private String icon;
 
-    private Integer userId;
+    private Integer userInfoId;
 
     private Integer businessId;
 

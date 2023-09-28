@@ -61,14 +61,14 @@ public class UserInfoController {
         ));
     }
 
-    @GetMapping("/updateVacation/userId/{userId}/restVacation/{restVacation}")
-    private void updateVacation(@PathVariable int userId , @PathVariable int restVacation){
-        userInfoRepository.updateVacationInUserInfo(restVacation,userId);
+    @GetMapping("/updateVacation/userInfoId/{userInfoId}/restVacation/{restVacation}")
+    private void updateVacation(@PathVariable int userInfoId , @PathVariable int restVacation){
+        userInfoRepository.updateVacationInUserInfo(restVacation,userInfoId);
     }
 
-    @GetMapping("/getRestVacation/user/{userId}")
-    private int getRestVacation(@PathVariable int userId){
-      return  userInfoRepository.findRestVacationByUserId(userId);
+    @GetMapping("/getRestVacation/userInfo/{userInfoId}")
+    private int getRestVacation(@PathVariable int userInfoId){
+      return  userInfoRepository.findRestVacationByUserInfoId(userInfoId);
     }
 
     @GetMapping("/getUserInfo/business/{businessId}")
