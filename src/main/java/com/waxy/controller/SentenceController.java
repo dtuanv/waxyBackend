@@ -10,6 +10,7 @@ import com.waxy.service.mapper.SentenceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -81,9 +82,9 @@ public class SentenceController {
     }
 
     @GetMapping("/sentence/week/id/{userInfoId}")
-    private Set<SentenceDto> getSentenceInWeek(@PathVariable long userInfoId){
-        Set<SentenceDto> sentenceDtoSet = sentenceRepository.findSentenceInWeekByUserInfoId(userInfoId)
-                .stream().map(sentenceMapper :: mapToDto).collect(Collectors.toSet());
+    private List<SentenceDto> getSentenceInWeek(@PathVariable long userInfoId){
+        List<SentenceDto> sentenceDtoSet = sentenceRepository.findSentenceInWeekByUserInfoId(userInfoId)
+                .stream().map(sentenceMapper :: mapToDto).collect(Collectors.toList());
         return sentenceDtoSet;
     }
 

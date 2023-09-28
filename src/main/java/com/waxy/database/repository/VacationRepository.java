@@ -21,6 +21,9 @@ public interface VacationRepository extends JpaRepository<Vacation, Long> {
     @Query(value="SELECT * FROM vacation WHERE is_confirmed = false AND is_rejected = false AND business_id = ?1" , nativeQuery = true)
     LinkedHashSet<Vacation> findVacationIsNotConfirm(int businessId);
 
+    @Query(value="SELECT * FROM vacation WHERE is_confirmed = false AND is_rejected = false AND user_info_id = ?1" , nativeQuery = true)
+    LinkedHashSet<Vacation> findVacationIsNotConfirmByUserInfoId(int userInfoId);
+
 
     @Transactional
     @Modifying
