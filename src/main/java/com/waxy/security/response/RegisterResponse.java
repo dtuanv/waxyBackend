@@ -1,8 +1,16 @@
 package com.waxy.security.response;
 
+import com.waxy.database.entity.UserInfo;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class RegisterResponse {
     private boolean isRegistered;
     private String messsage;
+
+    private UserInfo userInfo;
 
     public RegisterResponse() {
 

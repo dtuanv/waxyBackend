@@ -1,6 +1,8 @@
 package com.waxy.service.register;
 
 import com.waxy.database.dto.UserDTO;
+import com.waxy.database.dto.UserRoleDTO;
+import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.RegisterRepository;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.request.RegisterRequest;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 //@DataJpaTest
@@ -58,6 +61,44 @@ class RegisterServiceImplTest {
         Assertions.assertThat(registerResponse.getMesssage()).isEqualTo("User was saved");
 
 
+    }
+    @Test
+    public void whenDoRegisterThenReturnUserInfo(){
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setUsername("user");
+        registerRequest.setPassword("user");
+        registerRequest.setRole("business_admin");
+        UserDTO newUser = mapNewRegisterToNewUserOrUpdateUser(registerRequest);
+
+        when(registerRepository.save(any())).thenReturn(newUser);
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(newUser.getId());
+        userInfo.setFirstLogin(true);
+
+        when(userInfoRepository.save(any())).thenReturn(userInfo);
+
+        //Act
+        RegisterResponse registerResponse = registerService.doRegister(registerRequest);
+
+        Assertions.assertThat(registerResponse.getUserInfo()).isNotNull();
+        Assertions.assertThat(registerResponse.getUserInfo().isFirstLogin()).isTrue();
+    }
+
+
+
+    private UserDTO mapNewRegisterToNewUserOrUpdateUser(RegisterRequest registerRequest) {
+        UserDTO userDto = new UserDTO();
+
+        userDto.setUsername(registerRequest.getUsername());
+        userDto.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
+
+        UserRoleDTO basicRole = new UserRoleDTO();
+        basicRole.setRole("ROL_BASIC");
+        basicRole.setUserDTO(userDto);
+
+        userDto.getUserRoles().add(basicRole);
+        return userDto;
     }
 
 

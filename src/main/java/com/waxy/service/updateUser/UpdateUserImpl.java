@@ -40,8 +40,15 @@ public class UpdateUserImpl implements UpdateUserService{
 
         registerRepository.save(userDTO);
 
-        updateUserResponse.setUpdated(true);
+        UserInfo updatedUserInfo = userInfoRepository.findById(updateUser.getUpdateUserId()).orElseThrow(() -> new IllegalArgumentException(
+                String.format("Can not found bAdmin by ID "+updateUser.getUpdateUserId())
+        ) );
 
+        updatedUserInfo.setFirstLogin(true);
+
+        userInfoRepository.save(updatedUserInfo);
+        updateUserResponse.setUpdated(true);
+        updateUserResponse.setUserInfo(updatedUserInfo);
         updateUserResponse.setMessage("New password is: "+updateUser.getPassword());
         return updateUserResponse;
     }

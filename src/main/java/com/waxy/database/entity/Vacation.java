@@ -1,9 +1,6 @@
 package com.waxy.database.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,7 +8,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Builder
-//@NoArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Vacation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
