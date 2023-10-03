@@ -1,5 +1,6 @@
 package com.waxy.database.repository;
 
+import com.waxy.database.dto.UserDTO;
 import com.waxy.database.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Repository
@@ -44,4 +46,7 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
 
     @Query(value="SELECT count(*) FROM user_info WHERE business_id = ?1", nativeQuery = true)
     int countUserOfBusiness(long businessId);
+
+    @Query(value = "SELECT * FROM user_info WHERE business_id = ?1 AND name ILIKE ?2 ", nativeQuery = true)
+    Optional<UserInfo> findByNameAndBusinessId(int businessId, String fullName);
 }

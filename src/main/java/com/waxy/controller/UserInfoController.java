@@ -61,9 +61,22 @@ public class UserInfoController {
         ));
     }
 
-    @GetMapping("/updateVacation/userInfoId/{userInfoId}/restVacation/{restVacation}")
-    private void updateVacation(@PathVariable int userInfoId , @PathVariable int restVacation){
-        userInfoRepository.updateVacationInUserInfo(restVacation,userInfoId);
+    @GetMapping("/updateVacation/userInfoId/{userInfoId}/totalVacation/{totalVacation}")
+    private void updateVacationWhenRequest(@PathVariable long userInfoId , @PathVariable int totalVacation){
+
+        UserInfo userInfo = userInfoRepository.findById(userInfoId).orElseThrow(() -> new IllegalArgumentException(
+                String.format("Can not found UserInfo by ID: "+ userInfoId)
+        ));
+        userInfo.setRestVacation(userInfo.getRestVacation() - totalVacation);
+        userInfoRepository.save(userInfo);
+    }
+    @GetMapping("/updateVacation/userInfoId/{userInfoId}/duration/{duration}")
+    private void updateVacationWhenReject(@PathVariable long userInfoId , @PathVariable int duration){
+        UserInfo userInfo = userInfoRepository.findById(userInfoId).orElseThrow(() -> new IllegalArgumentException(
+                String.format("Can not found UserInfo by ID: "+ userInfoId)
+        ));
+        userInfo.setRestVacation(userInfo.getRestVacation() + duration);
+        userInfoRepository.save(userInfo);
     }
 
     @GetMapping("/getRestVacation/userInfo/{userInfoId}")

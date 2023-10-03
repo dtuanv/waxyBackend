@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class RegisterRequest {
 
-
+    private long userId;
     private String fullName;
 
     private String avatar;
