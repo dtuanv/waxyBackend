@@ -39,4 +39,7 @@ public class UserInfo {
     private String position;
 
     private String language;
+
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean firstLogin = false;
 }

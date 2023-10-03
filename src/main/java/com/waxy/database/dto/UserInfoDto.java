@@ -35,4 +35,7 @@ public class UserInfoDto {
     private String language;
 
     private String businessName;
+
+    private boolean firstLogin;
+
 }

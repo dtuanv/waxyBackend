@@ -26,6 +26,7 @@ import java.util.Optional;
 
 import static jdk.dynalink.linker.support.Guards.isNotNull;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -68,9 +69,16 @@ class UpdateUserServiceTest {
 
         when(registerRepository.findById(updateUser.getUpdateUserId())).thenReturn(Optional.ofNullable(userDTO));
 
+        when(userInfoRepository.findById(updateUser.getUpdateUserId())).thenReturn(Optional.of(userInfoUpdate));
+        userInfoUpdate.setFirstLogin(true);
+
+        when(userInfoRepository.save(any())).thenReturn(userInfoUpdate);
+
        UpdateUserResponse updateUserResponse = updateUserService.doUpdateUser(updateUser);
 
         org.assertj.core.api.Assertions.assertThat(updateUserResponse.isUpdated()).isTrue();
+
+        org.assertj.core.api.Assertions.assertThat(updateUserResponse.getUserInfo().isFirstLogin()).isTrue();
 
         org.assertj.core.api.Assertions.assertThat(updateUserResponse.getMessage()).isEqualTo("New password is: user");
     }

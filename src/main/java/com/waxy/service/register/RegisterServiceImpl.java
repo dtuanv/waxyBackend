@@ -58,34 +58,36 @@ public class RegisterServiceImpl implements RegisterService {
 
         UserDTO newUser = mapNewRegisterToNewUserOrUpdateUser(registerRequest);
         registerRepository.save(newUser);
-        if(registerRequest.getUserId() == 0){
-            UserInfo userInfo = new UserInfo();
-            userInfo.setUserId(newUser.getId());
 
-            userInfo.setAvatar(registerRequest.getAvatar());
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(newUser.getId());
 
-            userInfo.setName(registerRequest.getFullName());
+        userInfo.setAvatar(registerRequest.getAvatar());
 
-            userInfo.setRestVacation(registerRequest.getRestVacation());
+        userInfo.setName(registerRequest.getFullName());
 
-            userInfo.setBusinessId((long) registerRequest.getBusinessId());
+        userInfo.setRestVacation(registerRequest.getRestVacation());
 
-            userInfo.setRole(registerRequest.getRole());
+        userInfo.setBusinessId((long) registerRequest.getBusinessId());
 
-            userInfo.setDepartment(registerRequest.getDepartment());
+        userInfo.setRole(registerRequest.getRole());
 
-            userInfo.setBirthday(registerRequest.getBirthday());
+        userInfo.setDepartment(registerRequest.getDepartment());
 
-            userInfo.setPosition(registerRequest.getPosition());
+        userInfo.setBirthday(registerRequest.getBirthday());
 
-            userInfo.setLanguage(registerRequest.getLanguage());
+        userInfo.setPosition(registerRequest.getPosition());
 
-            userInfoRepository.save(userInfo);
-        }
+        userInfo.setLanguage(registerRequest.getLanguage());
 
+        userInfo.setFirstLogin(true);
+
+       UserInfo  savedUserInfo =    userInfoRepository.save(userInfo);
         RegisterResponse registerResponse = new RegisterResponse();
         registerResponse.setRegistered(true);
         registerResponse.setMesssage("User was saved");
+        registerResponse.setUserInfo(savedUserInfo);
+
 
         return registerResponse;
     }

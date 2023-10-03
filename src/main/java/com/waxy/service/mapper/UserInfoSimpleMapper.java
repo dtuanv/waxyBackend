@@ -43,6 +43,9 @@ public class UserInfoSimpleMapper extends UserInfoMapper{
 
         dto.setBusinessName(business.getName());
 
+        dto.setFirstLogin(userInfo.isFirstLogin());
+
+
         return dto;
     }
 

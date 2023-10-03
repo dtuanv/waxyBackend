@@ -1,5 +1,6 @@
 package com.waxy.security.response;
 
+import com.waxy.database.entity.UserInfo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,4 +11,6 @@ public class UpdateUserResponse {
     private String message;
 
     private boolean isUpdated;
+
+    private UserInfo userInfo;
 }
