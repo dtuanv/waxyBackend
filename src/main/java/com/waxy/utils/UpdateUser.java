@@ -14,6 +14,8 @@ public class UpdateUser {
 
     private long updateUserId;
 
+    private long updateUserInfoId;
+
     private String role;
     private String password;
 }

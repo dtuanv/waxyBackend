@@ -20,7 +20,7 @@ public class UpdateUserImpl implements UpdateUserService{
     private final PasswordEncoder passwordEncoder;
     private final UserInfoRepository userInfoRepository;
     @Override
-    public UpdateUserResponse doUpdateUser(UpdateUser updateUser) {
+    public UpdateUserResponse adminDoUpdateUser(UpdateUser updateUser) {
         UpdateUserResponse updateUserResponse = new UpdateUserResponse();
         UpdateUserResponse updateUserResponseErr = new UpdateUserResponse();
         updateUserResponseErr.setMessage("Error! Please log in again.!");
@@ -35,13 +35,13 @@ public class UpdateUserImpl implements UpdateUserService{
                 }
             }
         UserDTO userDTO = registerRepository.findById(updateUser.getUpdateUserId())
-                .orElseThrow(() -> new IllegalArgumentException(String.format("Can not found user by ID "+updateUser.getUpdateUserId())));
+                .orElseThrow(() -> new IllegalArgumentException(String.format("Can not found userDto by ID "+updateUser.getUpdateUserId())));
         userDTO.setPassword(passwordEncoder.encode(updateUser.getPassword()));
 
         registerRepository.save(userDTO);
 
-        UserInfo updatedUserInfo = userInfoRepository.findById(updateUser.getUpdateUserId()).orElseThrow(() -> new IllegalArgumentException(
-                String.format("Can not found bAdmin by ID "+updateUser.getUpdateUserId())
+        UserInfo updatedUserInfo = userInfoRepository.findById(updateUser.getUpdateUserInfoId()).orElseThrow(() -> new IllegalArgumentException(
+                String.format("Can not found bAdmin by ID "+updateUser.getUpdateUserInfoId())
         ) );
 
         updatedUserInfo.setFirstLogin(true);
@@ -50,6 +50,28 @@ public class UpdateUserImpl implements UpdateUserService{
         updateUserResponse.setUpdated(true);
         updateUserResponse.setUserInfo(updatedUserInfo);
         updateUserResponse.setMessage("New password is: "+updateUser.getPassword());
+        return updateUserResponse;
+    }
+
+    @Override
+    public UpdateUserResponse userDoUpdateUser(String password, long userInfoId, long userId){
+        UpdateUserResponse updateUserResponse = new UpdateUserResponse();
+        UpdateUserResponse updateUserResponseErr = new UpdateUserResponse();
+        updateUserResponseErr.setMessage("Error! Please log in again.!");
+        updateUserResponseErr.setUpdated(false);
+        Optional<UserDTO> userDTO = registerRepository.findById(userId);
+        Optional<UserInfo> userInfo = userInfoRepository.findById(userInfoId);
+        if(userDTO.isPresent() && userInfo.isPresent()){
+            userDTO.orElseThrow().setPassword(passwordEncoder.encode(password));
+           registerRepository.save( userDTO.orElseThrow());
+             userInfo.orElseThrow().setFirstLogin(false);
+             userInfoRepository.save(userInfo.orElseThrow());
+            updateUserResponse.setUserInfo(userInfo.orElseThrow());
+            updateUserResponse.setMessage("Password successfully changed!");
+            updateUserResponse.setUpdated(true);
+        }else {
+            return updateUserResponseErr;
+        }
         return updateUserResponse;
     }
 }
