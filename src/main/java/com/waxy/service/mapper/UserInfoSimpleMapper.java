@@ -31,6 +31,7 @@ public class UserInfoSimpleMapper extends UserInfoMapper{
         dto.setRestVacation(userInfo.getRestVacation());
         Business business = businessRepository.findById(Long.valueOf(userInfo.getBusinessId())).orElseThrow(() ->
                 new IllegalArgumentException(String.format("Can not found Business By Id "+userInfo.getBusinessId())));
+
         dto.setBusinessArea(business.getBusinessArea());
 
         dto.setDepartment(userInfo.getDepartment());

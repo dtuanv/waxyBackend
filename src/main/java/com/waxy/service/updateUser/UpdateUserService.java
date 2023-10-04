@@ -4,5 +4,7 @@ import com.waxy.security.response.UpdateUserResponse;
 import com.waxy.utils.UpdateUser;
 
 public interface UpdateUserService {
-    UpdateUserResponse doUpdateUser(UpdateUser updateUser);
+    UpdateUserResponse adminDoUpdateUser(UpdateUser updateUser);
+
+    UpdateUserResponse userDoUpdateUser(String password, long userInfoId, long userId);
 }
