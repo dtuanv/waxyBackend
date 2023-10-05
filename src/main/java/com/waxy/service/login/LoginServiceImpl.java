@@ -32,7 +32,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public LoginResponse doLogin(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername().toLowerCase(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         SecureUser userDetails = (SecureUser) authentication.getPrincipal();
         String jwtToken = JwtUtil.generateJwtToken(userDetails.getUsername());
