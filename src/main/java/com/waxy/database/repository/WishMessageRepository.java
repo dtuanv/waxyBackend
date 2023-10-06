@@ -14,7 +14,7 @@ public interface WishMessageRepository extends JpaRepository<WishMessage, Long> 
     Set<WishMessage> findWishMessageByBUserId(long bUserId);
 
     @Query(value="SELECT * FROM wish_message WHERE from_user_id = ?1 AND birth_user_id = ?2 AND create_at LIKE ?3", nativeQuery = true)
-    Set<WishMessage> checkWishMessageFromUser(long fromUserId, long birthUserId, String today);
+    Set<WishMessage> checkWishMessageFromUser(long fromUserId, long birthUserId, String create_at);
 
     @Query(value="SELECT *\n" +
             "FROM wish_message\n" +

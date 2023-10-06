@@ -1,8 +1,6 @@
 package com.waxy.controller;
 
-import com.waxy.database.entity.Business;
 import com.waxy.database.entity.UserInfo;
-import com.waxy.database.entity.WishMessage;
 import com.waxy.database.repository.UserInfoRepository;
 import com.waxy.database.repository.UserRepository;
 import com.waxy.database.repository.WishMessageRepository;
@@ -25,29 +23,32 @@ public class UserInfoController {
 
     private final UserRepository userRepository;
 
+
     @PostMapping("/updateUserInfo")
     private void updateUserInfo(@RequestBody UserInfo userInfo){
         userInfoService.saveUserInfo(userInfo);
     }
 
-    @GetMapping("/business/{businessId}/checkTodayIsBirthdayOfWhom/{today}/fromUser/{fromUserId}")
+    @GetMapping("/business/{businessId}/checkTodayIsBirthdayOfWhomAndCheckIfHasSentMessage/{today}/fromUser/{fromUserId}")
     private Set<UserInfo> getUserInfoHasBirthday(@PathVariable long businessId,@PathVariable String today, @PathVariable long fromUserId){
         String[] todayArr = today.split("\\.");
         int day = Integer.parseInt(todayArr[0]) ;
         int month = Integer.parseInt(todayArr[1]) ;
-        Set<UserInfo> userInfoSet = userInfoRepository.findUserInfoTodayHasBirthday(businessId,month,day);
-        userInfoSet = userInfoSet.stream().filter(userInfo -> checkUserHasSentMessage(fromUserId,userInfo.getUserId(),today)).collect(Collectors.toSet());
-            return userInfoSet;
+        Set<UserInfo> userInfoHasBirthdayWhoHaveNotReceivedMessage = userInfoRepository.findUserInfoTodayHasBirthday(businessId,month,day);
+
+        userInfoHasBirthdayWhoHaveNotReceivedMessage = userInfoHasBirthdayWhoHaveNotReceivedMessage.stream()
+                .filter(userInfo -> userInfoService.returnOnlyUserHasNotSentMessage(fromUserId,userInfo.getId(),today)).collect(Collectors.toSet());
+            return userInfoHasBirthdayWhoHaveNotReceivedMessage;
     }
 
-    private boolean checkUserHasSentMessage(long fromUserId, long birthUserId, String today){
-        int size = wishMessageRepository.checkWishMessageFromUser(fromUserId,birthUserId,today).stream().collect(Collectors.toSet()).size() ;
-        if(size == 0){
-            return true;
-        }else {
-            return false ;
-        }
-    }
+//    private boolean checkUserHasSentMessage(long fromUserId, long birthUserId, String today){
+//        int size = wishMessageRepository.checkWishMessageFromUser(fromUserId,birthUserId,today).stream().collect(Collectors.toSet()).size() ;
+//        if(size == 0){
+//            return true;
+//        }else {
+//            return false ;
+//        }
+//    }
     @GetMapping("/userInfo/id/{userInfoId}")
     private UserInfo getUserInfoById(@PathVariable long userInfoId){
         return userInfoRepository.findById(userInfoId).orElseThrow(() -> new IllegalArgumentException(

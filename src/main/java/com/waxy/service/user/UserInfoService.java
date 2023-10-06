@@ -2,14 +2,29 @@ package com.waxy.service.user;
 
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.UserInfoRepository;
+import com.waxy.database.repository.WishMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 public class UserInfoService {
 
     @Autowired
     UserInfoRepository userInfoRepository;
+
+    @Autowired
+    WishMessageRepository wishMessageRepository;
+
+    public boolean returnOnlyUserHasNotSentMessage(long fromUserId, long birthUserId, String today){
+        int size = wishMessageRepository.checkWishMessageFromUser(fromUserId,birthUserId,today).stream().collect(Collectors.toSet()).size() ;
+        if(size == 0){
+            return true;
+        }else {
+            return false ;
+        }
+    }
 
     public void saveUserInfo(UserInfo userInfo){
         UserInfo userInfoUpdate;
