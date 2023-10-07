@@ -29,7 +29,7 @@ public class NotWorkable {
 
     private Integer duration;
 
-    private Integer userId;
+    private Integer userInfoId;
 
     private Integer businessId;
 
