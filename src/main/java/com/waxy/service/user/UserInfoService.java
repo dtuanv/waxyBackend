@@ -53,6 +53,8 @@ public class UserInfoService {
 
         userInfoUpdate.setLanguage(userInfo.getLanguage());
 
+        userInfoUpdate.setRestVacation(userInfo.getRestVacation());
+
 
         userInfoRepository.save(userInfoUpdate);
     }
