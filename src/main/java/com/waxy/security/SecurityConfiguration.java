@@ -46,6 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/getNotice/homePage",
                 "/getNotice/productPage",
                 "/allSentence",
+                "/saveBetGroup",
+                "/getBetGroup"
 
 
         };
