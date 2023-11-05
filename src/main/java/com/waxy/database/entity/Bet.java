@@ -26,9 +26,9 @@ public class Bet {
     private String  name5;
     private String  name6;
 
-    private int amount;
+    private double amount;
 
-    private int profit;
+    private double profit;
 
     @ManyToOne
     BetGroup betGroup;

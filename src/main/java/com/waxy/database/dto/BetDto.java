@@ -3,6 +3,8 @@ package com.waxy.database.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+
 @Getter
 @Setter
 public class BetDto {
@@ -19,8 +21,10 @@ public class BetDto {
     private String  name5;
     private String  name6;
 
-    private int amount;
+    @Column(name="amount")
+    private double amount;
 
-    private int profit;
+    @Column(name="profit")
+    private double profit;
 
 }
