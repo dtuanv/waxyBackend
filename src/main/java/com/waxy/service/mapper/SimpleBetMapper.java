@@ -49,7 +49,7 @@ public class SimpleBetMapper extends BetMapper{
         betDto.setId(bet.getId());
 
         betDto.setName(bet.getName());
-        betDto.setName(bet.getName());
+
         betDto.setName1(bet.getName1());
 
         betDto.setName2(bet.getName2());
