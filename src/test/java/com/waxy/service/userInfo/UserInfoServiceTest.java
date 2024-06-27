@@ -64,7 +64,7 @@ class UserInfoServiceTest {
       Set<UserInfo>  userInfoSet = userInfoHasBirthday.stream().filter(userInfo ->
               userInfoService.returnOnlyUserHasNotSentMessage(userInfo.getId(),2L,"06.10.2023")).collect(Collectors.toSet());
 
-        Boolean isExist = userInfoService.returnOnlyUserHasNotSentMessage(1L, wishMessage.getBirthUserId(),wishMessage.getCreateAt());
+        Boolean isExist = userInfoService.returnOnlyUserHasNotSentMessage(1L,2L,wishMessage.getCreateAt());
 
         Assertions.assertThat(userInfoSet.size()).isLessThan(userInfoHasBirthday.size());
 
