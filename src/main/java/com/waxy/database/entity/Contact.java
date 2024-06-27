@@ -3,8 +3,10 @@ package com.waxy.database.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
+import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -20,4 +22,11 @@ public class Contact {
 
     @Column(columnDefinition="TEXT")
     private String message;
+
+    @Column(name = "is_read")
+    private boolean isRead = false;
+
+    @CreationTimestamp
+    @Column(name = "create_at", updatable = false)
+    private LocalDateTime createAt;
 }

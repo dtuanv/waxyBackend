@@ -16,6 +16,7 @@ public class ContactController {
 
     @PostMapping("/saveContact")
     private void saveContact(@RequestBody Contact contact){
+
         contactRepository.save(contact);
     }
 
@@ -31,4 +32,9 @@ public class ContactController {
 
         return contacts;
     }
+    @PostMapping ("/updateReadContact")
+    private Contact updateReadContact(@RequestBody Contact contact){
+      return   contactRepository.updateReadContactQuery(!contact.isRead(), contact.getId() );
+    }
+
 }
