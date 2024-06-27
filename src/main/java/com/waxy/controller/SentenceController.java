@@ -88,4 +88,11 @@ public class SentenceController {
         return sentenceDtoSet;
     }
 
+    @GetMapping("/sentense/keyword/{keyword}")
+    private List<SentenceDto> getSentenceByKeyword(@PathVariable String keyword){
+        List<SentenceDto> sentenceDtos = sentenceRepository.findSentenceByKeyword(keyword).stream()
+                .map(sentenceMapper :: mapToDto).collect(Collectors.toList());
+
+        return sentenceDtos;
+    }
 }
