@@ -21,7 +21,11 @@ public class Contact {
     private String mobil;
 
     @Column(columnDefinition="TEXT")
+    private String gmail;
+
+    @Column(columnDefinition="TEXT")
     private String message;
+
 
     @Column(name = "is_read")
     private boolean isRead = false;
