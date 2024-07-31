@@ -1,6 +1,6 @@
 package com.waxy.controller;
 
-import com.waxy.database.dto.WorkplanDto;
+import com.waxy.dto.WorkplanDto;
 import com.waxy.database.entity.Workplan;
 import com.waxy.database.repository.StaffRepository;
 import com.waxy.database.repository.WorkplanRepository;
@@ -8,9 +8,7 @@ import com.waxy.service.mapper.WorkplanMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController

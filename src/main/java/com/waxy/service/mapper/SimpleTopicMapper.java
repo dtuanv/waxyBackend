@@ -1,6 +1,6 @@
 package com.waxy.service.mapper;
 
-import com.waxy.database.dto.TopicDto;
+import com.waxy.dto.TopicDto;
 import com.waxy.database.entity.Topic;
 import com.waxy.database.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;

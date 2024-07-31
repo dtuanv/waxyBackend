@@ -1,6 +1,6 @@
 package com.waxy.security;
 
-import com.waxy.database.dto.UserDTO;
+import com.waxy.dto.UserDTO;
 import com.waxy.database.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

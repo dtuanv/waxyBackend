@@ -1,7 +1,6 @@
 package com.waxy.security.response;
 
-import com.waxy.database.dto.UserInfoDto;
-import com.waxy.database.entity.UserInfo;
+import com.waxy.dto.UserInfoDto;
 import lombok.Getter;
 import lombok.Setter;
 

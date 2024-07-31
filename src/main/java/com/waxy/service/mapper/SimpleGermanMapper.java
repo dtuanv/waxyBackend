@@ -1,6 +1,6 @@
 package com.waxy.service.mapper;
 
-import com.waxy.database.dto.GermanDto;
+import com.waxy.dto.GermanDto;
 import com.waxy.database.entity.German;
 import com.waxy.database.repository.GermanRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.waxy.service.mapper;
 
-import com.waxy.database.dto.TopicDto;
+import com.waxy.dto.TopicDto;
 import com.waxy.database.entity.Topic;
 
 public abstract class TopicMapper {

@@ -1,7 +1,7 @@
 package com.waxy.service.register;
 
-import com.waxy.database.dto.UserDTO;
-import com.waxy.database.dto.UserRoleDTO;
+import com.waxy.dto.UserDTO;
+import com.waxy.dto.UserRoleDTO;
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.RegisterRepository;
 import com.waxy.database.repository.UserInfoRepository;
@@ -13,17 +13,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 

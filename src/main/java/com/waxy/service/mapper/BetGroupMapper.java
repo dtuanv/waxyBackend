@@ -1,6 +1,6 @@
 package com.waxy.service.mapper;
 
-import com.waxy.database.dto.BetGroupDto;
+import com.waxy.dto.BetGroupDto;
 import com.waxy.database.entity.BetGroup;
 
 public abstract class BetGroupMapper {

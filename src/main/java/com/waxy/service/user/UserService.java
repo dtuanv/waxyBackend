@@ -1,6 +1,6 @@
 package com.waxy.service.user;
 
-import com.waxy.database.dto.UserDTO;
+import com.waxy.dto.UserDTO;
 
 import java.util.Optional;
 

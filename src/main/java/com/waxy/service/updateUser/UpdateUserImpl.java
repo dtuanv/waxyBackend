@@ -1,6 +1,6 @@
 package com.waxy.service.updateUser;
 
-import com.waxy.database.dto.UserDTO;
+import com.waxy.dto.UserDTO;
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.RegisterRepository;
 import com.waxy.database.repository.UserInfoRepository;

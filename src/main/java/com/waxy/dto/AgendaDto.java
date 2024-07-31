@@ -1,11 +1,10 @@
-package com.waxy.database.dto;
+package com.waxy.dto;
 
-import com.waxy.database.entity.StaffItem;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Set;
+
 @Getter
 @Setter
 public class AgendaDto {

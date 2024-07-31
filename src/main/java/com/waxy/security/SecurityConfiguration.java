@@ -48,7 +48,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/allSentence",
                 "/lebenindeutschland/allQuestion",
                 "/saveBetGroup",
-                "/getBetGroup"
+                "/getBetGroup",
+                "/api/send-email"
 
 
         };

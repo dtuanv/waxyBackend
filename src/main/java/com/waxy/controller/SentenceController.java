@@ -1,8 +1,6 @@
 package com.waxy.controller;
 
-import com.waxy.database.dto.SentenceDto;
-import com.waxy.database.entity.German;
-import com.waxy.database.entity.Sentence;
+import com.waxy.dto.SentenceDto;
 import com.waxy.database.repository.GermanRepository;
 import com.waxy.database.repository.SentenceRepository;
 import com.waxy.service.mapper.GermanMapper;

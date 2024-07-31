@@ -1,6 +1,6 @@
 package com.waxy.database.repository;
 
-import com.waxy.database.dto.UserDTO;
+import com.waxy.dto.UserDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
