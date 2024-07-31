@@ -1,6 +1,6 @@
 package com.waxy.service.user;
 
-import com.waxy.database.dto.UserDTO;
+import com.waxy.dto.UserDTO;
 import com.waxy.database.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

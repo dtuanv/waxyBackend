@@ -1,11 +1,9 @@
 package com.waxy.service.mapper;
 
-import com.waxy.database.dto.UserInfoDto;
+import com.waxy.dto.UserInfoDto;
 import com.waxy.database.entity.Business;
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.BusinessRepository;
-import com.waxy.database.repository.UserInfoRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

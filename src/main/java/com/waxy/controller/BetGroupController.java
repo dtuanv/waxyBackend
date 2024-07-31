@@ -1,7 +1,6 @@
 package com.waxy.controller;
 
-import com.waxy.database.dto.BetDto;
-import com.waxy.database.dto.BetGroupDto;
+import com.waxy.dto.BetGroupDto;
 import com.waxy.database.entity.Bet;
 import com.waxy.database.entity.BetGroup;
 import com.waxy.database.repository.BetGroupRepository;

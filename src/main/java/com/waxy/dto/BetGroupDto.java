@@ -1,6 +1,5 @@
-package com.waxy.database.dto;
+package com.waxy.dto;
 
-import com.waxy.database.entity.Bet;
 import lombok.Getter;
 import lombok.Setter;
 

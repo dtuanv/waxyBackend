@@ -1,4 +1,4 @@
-package com.waxy.database.dto;
+package com.waxy.dto;
 
 import javax.persistence.*;
 

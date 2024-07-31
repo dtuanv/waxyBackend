@@ -1,4 +1,4 @@
-package com.waxy.database.dto;//package com.waxy.database.dto;
+package com.waxy.dto;//package com.waxy.database.dto;
 //
 //import java.util.stream.Collectors;
 //

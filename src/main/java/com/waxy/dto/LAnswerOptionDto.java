@@ -1,10 +1,7 @@
-package com.waxy.database.dto;
+package com.waxy.dto;
 
-import com.waxy.database.entity.LQuestion;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.ManyToOne;
 
 @Getter
 @Setter

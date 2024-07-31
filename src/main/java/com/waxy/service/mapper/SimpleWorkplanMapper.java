@@ -1,18 +1,15 @@
 package com.waxy.service.mapper;
 
-import com.waxy.database.dto.AgendaDto;
-import com.waxy.database.dto.StaffItemDto;
-import com.waxy.database.dto.WorkplanDto;
-import com.waxy.database.entity.Agenda;
+import com.waxy.dto.AgendaDto;
+import com.waxy.dto.StaffItemDto;
+import com.waxy.dto.WorkplanDto;
 import com.waxy.database.entity.Workplan;
 import com.waxy.database.repository.StaffRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service

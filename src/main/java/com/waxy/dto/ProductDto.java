@@ -1,4 +1,4 @@
-package com.waxy.database.dto;
+package com.waxy.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,9 +1,6 @@
 package com.waxy.security;
 
-import com.waxy.database.dto.UserDTO;
-import com.waxy.database.entity.UserInfo;
-import com.waxy.database.repository.UserInfoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.waxy.dto.UserDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,8 +1,8 @@
 package com.waxy.service.register;
 
 
-import com.waxy.database.dto.UserDTO;
-import com.waxy.database.dto.UserRoleDTO;
+import com.waxy.dto.UserDTO;
+import com.waxy.dto.UserRoleDTO;
 import com.waxy.database.entity.UserInfo;
 import com.waxy.database.repository.RegisterRepository;
 import com.waxy.database.repository.UserInfoRepository;

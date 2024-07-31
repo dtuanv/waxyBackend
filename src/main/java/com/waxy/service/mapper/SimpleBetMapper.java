@@ -1,8 +1,7 @@
 package com.waxy.service.mapper;
 
-import com.waxy.database.dto.BetDto;
+import com.waxy.dto.BetDto;
 import com.waxy.database.entity.Bet;
-import com.waxy.database.entity.Topic;
 import com.waxy.database.repository.BetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
