@@ -1,8 +1,8 @@
 package com.waxy.controller;
 
-import com.waxy.dto.SentenceDto;
 import com.waxy.database.repository.GermanRepository;
 import com.waxy.database.repository.SentenceRepository;
+import com.waxy.dto.SentenceDto;
 import com.waxy.service.mapper.GermanMapper;
 import com.waxy.service.mapper.SentenceMapper;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +44,6 @@ public class SentenceController {
 
 
         }
-
         return sentenceDtoSet;
     }
 
