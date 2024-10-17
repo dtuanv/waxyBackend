@@ -1,10 +1,10 @@
 package com.waxy.service.mapper;
 
-import com.waxy.dto.SentenceDto;
 import com.waxy.database.entity.German;
 import com.waxy.database.entity.Sentence;
 import com.waxy.database.repository.GermanRepository;
 import com.waxy.database.repository.SentenceRepository;
+import com.waxy.dto.SentenceDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

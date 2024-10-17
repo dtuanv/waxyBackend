@@ -1,8 +1,8 @@
 package com.waxy.service.mapper;
 
-import com.waxy.dto.TopicDto;
 import com.waxy.database.entity.Topic;
 import com.waxy.database.repository.TopicRepository;
+import com.waxy.dto.TopicDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

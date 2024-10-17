@@ -1,7 +1,7 @@
 package com.waxy.service.mapper;
 
-import com.waxy.dto.LQuestionDto;
 import com.waxy.database.entity.LQuestion;
+import com.waxy.dto.LQuestionDto;
 
 public abstract class LQuestionMapper {
 

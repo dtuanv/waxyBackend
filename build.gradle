@@ -13,13 +13,17 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-
 repositories {
+
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
     maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://jitpack.io' }
 }
+
 dependencies {
+    implementation files('libs/ExcelReaderProject-1.0-SNAPSHOT.jar')
+    implementation files('libs/gradleTest-1.0-SNAPSHOT.jar')
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -28,7 +32,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

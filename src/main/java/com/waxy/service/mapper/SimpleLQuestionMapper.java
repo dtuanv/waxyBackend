@@ -1,8 +1,8 @@
 package com.waxy.service.mapper;
 
-import com.waxy.dto.LQuestionDto;
 import com.waxy.database.entity.LQuestion;
 import com.waxy.database.repository.LQuestionRepository;
+import com.waxy.dto.LQuestionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

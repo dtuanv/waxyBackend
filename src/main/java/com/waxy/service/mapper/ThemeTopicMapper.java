@@ -1,7 +1,7 @@
 package com.waxy.service.mapper;
 
-import com.waxy.dto.ThemeTopicDto;
 import com.waxy.database.entity.ThemeTopic;
+import com.waxy.dto.ThemeTopicDto;
 
 public abstract class ThemeTopicMapper{
 

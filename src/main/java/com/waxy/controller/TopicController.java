@@ -1,7 +1,7 @@
 package com.waxy.controller;
 
-import com.waxy.dto.TopicDto;
 import com.waxy.database.repository.TopicRepository;
+import com.waxy.dto.TopicDto;
 import com.waxy.service.mapper.TopicMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,10 @@
 package com.waxy.utils;
 
+
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -10,18 +12,18 @@ import java.util.Date;
 
 public class JwtUtil {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class.getSimpleName());
-
-    private final static String JWT_SECRET_KEY = "my-secret-key";
+    private static String JWT_SECRET_KEY = System.getenv("JWT_SECRET_KEY");
     private final static int JWT_EXPIRATION_IN_MS = 3600000; // (1 hour = 3600000 ms)
 
     public static String generateJwtToken(String userEmail) {
         Instant today = Instant.now();
         Instant expiration = today.plus(JWT_EXPIRATION_IN_MS, ChronoUnit.MILLIS);
+        System.out.println("JWT_SECRET_KEY "+ JWT_SECRET_KEY);
         return Jwts.builder()
                 .setSubject(userEmail)
                 .setIssuedAt(Date.from(today))
                 .setExpiration(Date.from(expiration))
-                .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY.getBytes())
                 .compact();
     }
 
