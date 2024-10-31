@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Grant executable permission for gradlew
-        run: chmod +x gradlew  # Make sure gradlew is executable
+        run: chmod +x gradlew
 
       - name: Build with Gradle
         run: ./gradlew build
