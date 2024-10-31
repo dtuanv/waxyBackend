@@ -1,9 +1,6 @@
 package com.waxy.database.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.relational.core.sql.In;
 
 import javax.persistence.*;
@@ -11,7 +8,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-//@Builder
 @NoArgsConstructor
 public class UserInfo {
 
@@ -42,4 +38,6 @@ public class UserInfo {
 
     @Column(nullable = false, columnDefinition = "boolean default false")
     private boolean firstLogin = false;
+
+
 }

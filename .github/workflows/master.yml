@@ -35,7 +35,7 @@ jobs:
         run: ./gradlew bootJar  
 
       - name: Upload JAR artifact
-        uses: actions/upload-artifact@v3  # Updated to v3
+        uses: actions/upload-artifact@v3
         with:
           name: spring-boot-app
           path: build/libs/*.jar  
