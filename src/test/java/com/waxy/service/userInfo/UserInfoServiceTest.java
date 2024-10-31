@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -46,29 +47,30 @@ class UserInfoServiceTest {
         userHasBeenSentMessage.setBusinessId(1L);
         userHasBeenSentMessage.setId(1L);
 
-        UserInfo userInfo2 = new UserInfo();
-        userInfo2.setBusinessId(2L);
-        userInfo2.setId(2);
+        UserInfo userHasNotSentMessage = new UserInfo();
+        userHasNotSentMessage.setBusinessId(2L);
+        userHasNotSentMessage.setId(2);
 
         userInfoHasBirthday.add(userHasBeenSentMessage);
-        userInfoHasBirthday.add(userInfo2);
+        userInfoHasBirthday.add(userHasNotSentMessage);
 
 
 
         when(wishMessageRepository.checkWishMessageFromUser
-                (1L,2L,"06.10.2023")).thenReturn(wishMessageSet);
+                (userHasBeenSentMessage.getId(),2L,"06.10.2023")).thenReturn(wishMessageSet);
 
-
+        when(wishMessageRepository.checkWishMessageFromUser
+                (userHasNotSentMessage.getId(),2L,"06.10.2023")).thenReturn(Collections.emptySet());
 
 
       Set<UserInfo>  userInfoSet = userInfoHasBirthday.stream().filter(userInfo ->
-              userInfoService.returnOnlyUserHasNotSentMessage(userInfo.getId(),2L,"06.10.2023")).collect(Collectors.toSet());
+              userInfoService.hasUserNotSentMessage(userInfo.getId(),2L,"06.10.2023")).collect(Collectors.toSet());
 
-        Boolean isExist = userInfoService.returnOnlyUserHasNotSentMessage(1L,2L,wishMessage.getCreateAt());
+        Boolean hasUserNotSentMessage = userInfoService.hasUserNotSentMessage(userHasBeenSentMessage.getId(),2L,wishMessage.getCreateAt());
 
         Assertions.assertThat(userInfoSet.size()).isLessThan(userInfoHasBirthday.size());
 
-        Assertions.assertThat(isExist).isFalse();
+        Assertions.assertThat(hasUserNotSentMessage).isFalse();
     }
 
 }

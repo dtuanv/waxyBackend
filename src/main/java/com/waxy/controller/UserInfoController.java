@@ -37,7 +37,7 @@ public class UserInfoController {
         Set<UserInfo> userInfoHasBirthdayWhoHaveNotReceivedMessage = userInfoRepository.findUserInfoTodayHasBirthday(businessId,month,day);
 
         userInfoHasBirthdayWhoHaveNotReceivedMessage = userInfoHasBirthdayWhoHaveNotReceivedMessage.stream()
-                .filter(userInfo -> userInfoService.returnOnlyUserHasNotSentMessage(fromUserId,userInfo.getId(),today)).collect(Collectors.toSet());
+                .filter(userInfo -> userInfoService.hasUserNotSentMessage(fromUserId,userInfo.getId(),today)).collect(Collectors.toSet());
             return userInfoHasBirthdayWhoHaveNotReceivedMessage;
     }
 

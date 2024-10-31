@@ -2,6 +2,7 @@ package com.waxy.utils;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.waxy.utils.JwtUtil.*;
@@ -10,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class JwtUtilTest {
     static  String token;
     static String username = "user@waxy";
-    @BeforeAll
-    public static void setUp(){
+    @BeforeEach
+    public  void setUp(){
          token =  generateJwtToken(username);
     }
 
@@ -19,7 +20,6 @@ class JwtUtilTest {
     public void testGenerateJwtToken(){
         String token = generateJwtToken("an");
 
-        System.out.println(token);
         assertEquals(token.length()> 25, true);
     }
 

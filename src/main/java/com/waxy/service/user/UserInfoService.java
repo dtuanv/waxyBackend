@@ -17,7 +17,7 @@ public class UserInfoService {
     @Autowired
     WishMessageRepository wishMessageRepository;
 
-    public boolean returnOnlyUserHasNotSentMessage(long fromUserId, long birthUserId, String today){
+    public boolean hasUserNotSentMessage(long fromUserId, long birthUserId, String today){
         int size = wishMessageRepository.checkWishMessageFromUser(fromUserId,birthUserId,today).stream().collect(Collectors.toSet()).size() ;
         if(size == 0){
             return true;
