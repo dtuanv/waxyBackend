@@ -4,10 +4,12 @@ import com.waxy.database.entity.EssentialLink;
 import com.waxy.database.repository.EssentialLinkGroupRelationRepository;
 import com.waxy.database.repository.EssentialLinkGroupRepository;
 import com.waxy.database.repository.EssentialLinkRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 
@@ -55,8 +57,14 @@ class EssentialLinkServiceTest {
         essentialLinkList.stream().forEach(link -> {
             System.out.println(link.getLink());
             System.out.println(link.getChildren().get(0).getLink());
+
+            Assertions.assertEquals(link.getChildren().get(0).getLink().equals("https://restaurantLink2-abc.com"), true);
         });
         System.out.println(essentialLinkList);
+
+        Assertions.assertEquals(essentialLinkList.size() > 0, true);
+
+
     }
 
     // Test configuration for mocking JavaMailSender
