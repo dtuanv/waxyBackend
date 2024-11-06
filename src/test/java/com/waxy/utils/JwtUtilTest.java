@@ -22,10 +22,10 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class JwtUtilTest {
 
-    @Mock // Mock the EnvUtil
+    @Mock
     private EnvUtil envUtil;
 
-    @InjectMocks // Inject mocks into the JwtUtil instance
+    @InjectMocks
     private JwtUtil jwtUtil;
     static  String token;
     static String username = "user@waxy";

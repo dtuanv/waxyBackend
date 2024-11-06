@@ -22,7 +22,6 @@ public class JwtUtil {
     public JwtUtil(EnvUtil envUtil) {
         this.JWT_SECRET_KEY = envUtil.getEnv("JWT_SECRET_KEY");
 
-        System.out.println("  this.JWT_SECRET_KEY  "+ this.JWT_SECRET_KEY );
     }
 
 //    private static String JWT_SECRET_KEY = System.getenv("JWT_SECRET_KEY");
@@ -30,7 +29,6 @@ public class JwtUtil {
 
     public static String generateJwtToken(String userEmail) {
 
-        System.out.println("JWT_SECRET_KEY "+ JWT_SECRET_KEY);
         Instant today = Instant.now();
         Instant expiration = today.plus(JWT_EXPIRATION_IN_MS, ChronoUnit.MILLIS);
         return Jwts.builder()
