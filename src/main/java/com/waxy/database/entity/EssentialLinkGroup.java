@@ -19,7 +19,6 @@ public class EssentialLinkGroup {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "essentialLinkGroup", cascade = CascadeType.ALL)
-    List<EssentialLinkGroupRelation> essentialLinkGroupRelationList;
+
 
 }

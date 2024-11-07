@@ -30,10 +30,5 @@ public class EssentialLink {
     @OneToMany(mappedBy = "parent")
     private List<EssentialLink> children;
 
-    @OneToMany(mappedBy = "essentialLink", cascade = CascadeType.ALL)
-    private List<EssentialLinkGroupRelation> essentialLinkGroupRelations;
-
-
-
 
 }
