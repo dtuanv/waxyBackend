@@ -22,6 +22,7 @@ public class EssentialLinkService {
     EssentialLinkGroupRelationRepository essentialLinkGroupRelationRepository;
 
 
+
     public List<EssentialLink> getAllActiveLinksWithChildren(){
         return essentialLinkRepository.findAllActiveLinksWithChildren();
     }

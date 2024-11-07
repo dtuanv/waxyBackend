@@ -10,6 +10,9 @@ import java.util.List;
 @Repository
 public interface EssentialLinkRepository extends JpaRepository<EssentialLink, Integer> {
 
-    @Query(value = "SELECT e FROM EssentialLink e LEFT JOIN FETCH e.children WHERE e.parent IS NULL AND e.isActive = TRUE")
+    @Query(value = "SELECT * FROM EssentialLink e LEFT JOIN FETCH e.children WHERE e.parent IS NULL AND e.isActive = TRUE", nativeQuery = true)
     List<EssentialLink> findAllActiveLinksWithChildren();
+
+    @Query(value = "SELECT * FROM essential_link WHERE parent_id = ?1", nativeQuery = true)
+    List<EssentialLink> findEssentialLinkByParentId(int id);
 }

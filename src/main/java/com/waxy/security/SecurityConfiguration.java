@@ -49,7 +49,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/lebenindeutschland/allQuestion",
                 "/saveBetGroup",
                 "/getBetGroup",
-                "/api/send-email"
+                "/api/send-email",
+                "/api/links/save",
+                "/api/links/all"
 
 
         };
