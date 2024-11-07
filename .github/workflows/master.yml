@@ -31,6 +31,13 @@ jobs:
       - name: Run tests with test profile
         env:
           SPRING_PROFILES_ACTIVE: test
+          WAXY_DB_URL_LOCAL: "jdbc:h2:mem:testdb"
+          WAXY_DB_USERNAME: "sa"
+          WAXY_DB_PASSWORD: "password"
+          WAXY_MAIL_HOST: "localhost"
+          WAXY_MAIL_USERNAME: "localhost"
+          WAXY_MAIL_PASSWORD: "localhost"
+          WAXY_MAIL_PORT: 1
         run: ./gradlew test
 
       - name: Package the application
