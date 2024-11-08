@@ -1,20 +1,22 @@
 package com.waxy.database.repository;
 
-import com.waxy.database.entity.EssentialLink;
+import com.waxy.database.entity.EssentialLinkEntity;
 import com.waxy.database.entity.EssentialLinkGroup;
 import com.waxy.database.entity.EssentialLinkGroupRelation;
-import com.waxy.service.layout.EssentialLinkService;
+import com.waxy.dto.EssentialLinkDto;
+import com.waxy.service.mapper.layout.EssentialLinkMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @ActiveProfiles("test")
 class EssentialLinkRepositoryTest {
@@ -28,8 +30,10 @@ class EssentialLinkRepositoryTest {
     @Autowired
     EssentialLinkGroupRelationRepository essentialLinkGroupRelationRepository;
 
+
+
     @Test
-    void testSaveEssentialLink() {
+    void testSaveEssentialLinkWithGroup() {
         EssentialLinkGroup essentialLinkGroup = new EssentialLinkGroup();
 
         essentialLinkGroup.setName("Restaurant");
@@ -38,7 +42,7 @@ class EssentialLinkRepositoryTest {
 
 
 
-        EssentialLink restaurantLink = new EssentialLink();
+        EssentialLinkEntity restaurantLink = new EssentialLinkEntity();
         restaurantLink.setTitle("Restaurant ABC");
         restaurantLink.setLink("https://restaurant-abc.com");
         restaurantLink.setDescription("A fine dining restaurant");
@@ -48,7 +52,7 @@ class EssentialLinkRepositoryTest {
 
         restaurantLink = essentialLinkRepository.save(restaurantLink);
 
-        EssentialLink restaurantLink2 = new EssentialLink();
+        EssentialLinkEntity restaurantLink2 = new EssentialLinkEntity();
         restaurantLink2.setTitle("restaurantLink2 ABC");
         restaurantLink2.setLink("https://restaurantLink2-abc.com");
         restaurantLink2.setDescription("A fine restaurantLink2 restaurant");
@@ -83,8 +87,38 @@ class EssentialLinkRepositoryTest {
     }
 
     @Test
+    void testSaveEssentialLink_SavesParentWithChildren(){
+        EssentialLinkDto essentialLinkDtoChild = new EssentialLinkDto();
+//        essentialLinkDtoChild.setId(11);
+        essentialLinkDtoChild.setTitle("Child1");
+        EssentialLinkDto essentialLinkDtoChild2 = new EssentialLinkDto();
+        essentialLinkDtoChild2.setTitle("Child2");
+        EssentialLinkDto essentialLinkDtoParent = new EssentialLinkDto();
+//        essentialLinkDtoParent.setId(1);
+        essentialLinkDtoParent.setTitle("Parent");
+        essentialLinkDtoParent.setLink("Parent");
+        essentialLinkDtoParent.getChildren().add(essentialLinkDtoChild);
+        essentialLinkDtoParent.getChildren().add(essentialLinkDtoChild2);
+
+        EssentialLinkMapper essentialLinkMapper = new EssentialLinkMapper();
+        essentialLinkRepository.save(essentialLinkMapper.mapToEntity(essentialLinkDtoParent));
+
+        List<EssentialLinkEntity> essentialLinkEntityList = essentialLinkRepository.findAll();
+
+        Assertions.assertEquals(essentialLinkEntityList.size(), 3);
+        Assertions.assertEquals(essentialLinkEntityList.get(0).getTitle(), "Parent");
+        Assertions.assertEquals(essentialLinkEntityList.get(0).getChildren().size(), 2);
+        Assertions.assertEquals(essentialLinkEntityList.get(0).getChildren().get(0).getTitle(), "Child1");
+        Assertions.assertEquals(essentialLinkEntityList.get(0).getChildren().get(1).getTitle(), "Child2");
+        Assertions.assertEquals(essentialLinkEntityList.get(1).getParent().getTitle(), "Parent");
+
+
+    }
+
+
+    @Test
     void testFindEssentialLinkByParentId(){
-        EssentialLink restaurantLink = new EssentialLink();
+        EssentialLinkEntity restaurantLink = new EssentialLinkEntity();
 
         restaurantLink.setTitle("Restaurant ABC");
         restaurantLink.setLink("https://restaurant-abc.com");
@@ -95,7 +129,7 @@ class EssentialLinkRepositoryTest {
 
         restaurantLink=   essentialLinkRepository.save(restaurantLink);
 
-        EssentialLink restaurantLink2 = new EssentialLink();
+        EssentialLinkEntity restaurantLink2 = new EssentialLinkEntity();
         restaurantLink2.setTitle("restaurantLink2 ABC");
         restaurantLink2.setLink("child.com");
         restaurantLink2.setDescription("A fine child ");
@@ -105,8 +139,8 @@ class EssentialLinkRepositoryTest {
         restaurantLink2.setParent(restaurantLink);
 
         essentialLinkRepository.save(restaurantLink2);
-
-        List<EssentialLink> essentialLinkByParentId = essentialLinkRepository.findEssentialLinkByParentId(restaurantLink.getId());
+        System.out.println(restaurantLink.getId());
+        List<EssentialLinkEntity> essentialLinkByParentId = essentialLinkRepository.findEssentialLinkByParentId(restaurantLink.getId());
 
         Assertions.assertEquals(essentialLinkByParentId.size() > 0, true);
     }

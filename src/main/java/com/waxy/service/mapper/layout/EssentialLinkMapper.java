@@ -1,6 +1,6 @@
 package com.waxy.service.mapper.layout;
 
-import com.waxy.database.entity.EssentialLink;
+import com.waxy.database.entity.EssentialLinkEntity;
 import com.waxy.database.repository.EssentialLinkRepository;
 import com.waxy.dto.EssentialLinkDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +16,41 @@ public class EssentialLinkMapper {
     EssentialLinkRepository essentialLinkRepository;
 
 
-    public EssentialLinkDto mapToDto(EssentialLink essentialLink){
+    public EssentialLinkDto mapToDto(EssentialLinkEntity essentialLinkEntity){
         EssentialLinkDto essentialLinkDto = new EssentialLinkDto();
 
-        essentialLinkDto.setId(essentialLink.getId());
-        essentialLinkDto.setLink(essentialLink.getLink());
-        essentialLinkDto.setIcon(essentialLink.getIcon());
-        essentialLinkDto.setCaption(essentialLink.getCaption());
-        essentialLinkDto.setDescription(essentialLink.getDescription());
-        essentialLinkDto.setTitle(essentialLink.getTitle());
-        essentialLinkDto.setIsActive(essentialLink.getIsActive());
+        essentialLinkDto.setId(essentialLinkEntity.getId());
+        essentialLinkDto.setLink(essentialLinkEntity.getLink());
+        essentialLinkDto.setIcon(essentialLinkEntity.getIcon());
+        essentialLinkDto.setCaption(essentialLinkEntity.getCaption());
+        essentialLinkDto.setDescription(essentialLinkEntity.getDescription());
+        essentialLinkDto.setTitle(essentialLinkEntity.getTitle());
+        essentialLinkDto.setIsActive(essentialLinkEntity.getIsActive());
 
-        List<EssentialLink> essentialLinkList = essentialLinkRepository.findEssentialLinkByParentId(essentialLink.getId());
+        List<EssentialLinkEntity> essentialLinkList = essentialLinkRepository.findEssentialLinkByParentId(essentialLinkEntity.getId());
         List<EssentialLinkDto> essentialLinkDtoList = essentialLinkList.stream().map(this::mapToDto).collect(Collectors.toList());
         essentialLinkDto.setChildren(essentialLinkDtoList);
 
         return essentialLinkDto;
+    }
+
+    public EssentialLinkEntity mapToEntity(EssentialLinkDto essentialLinkDto){
+        EssentialLinkEntity essentialLinkEntity = new EssentialLinkEntity();
+        essentialLinkEntity.setId(essentialLinkDto.getId());
+        essentialLinkEntity.setLink(essentialLinkDto.getLink());
+        essentialLinkEntity.setCaption(essentialLinkDto.getCaption());
+        essentialLinkEntity.setDescription(essentialLinkDto.getDescription());
+        essentialLinkEntity.setIcon(essentialLinkDto.getIcon());
+        essentialLinkEntity.setTitle(essentialLinkDto.getTitle());
+        if(essentialLinkDto.getChildren().size() > 0 ){
+            for (EssentialLinkDto child : essentialLinkDto.getChildren()) {
+                EssentialLinkEntity childEntity = mapToEntity(child);
+                childEntity.setParent(essentialLinkEntity);
+                essentialLinkEntity.getChildren().add(childEntity);
+            }
+        }
+
+        return essentialLinkEntity;
     }
 
 }

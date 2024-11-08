@@ -1,6 +1,6 @@
 package com.waxy.service.mapper.layout;
 
-import com.waxy.database.entity.EssentialLink;
+import com.waxy.database.entity.EssentialLinkEntity;
 import com.waxy.database.repository.EssentialLinkRepository;
 import com.waxy.dto.EssentialLinkDto;
 import org.junit.jupiter.api.Assertions;
@@ -10,14 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class EssentialLinkMapperTest {
 
@@ -29,7 +23,7 @@ class EssentialLinkMapperTest {
 
     @Test
     void shouldIncludeChildrenWhenMappingToDto(){
-        EssentialLink restaurantLink = new EssentialLink();
+        EssentialLinkEntity restaurantLink = new EssentialLinkEntity();
 
         restaurantLink.setId(1);
         restaurantLink.setTitle("Restaurant ABC");
@@ -38,10 +32,7 @@ class EssentialLinkMapperTest {
         restaurantLink.setCaption("Restaurant");
         restaurantLink.setIcon("add");
         restaurantLink.setIsActive(true);
-
-
-
-        EssentialLink restaurantLink2 = new EssentialLink();
+        EssentialLinkEntity restaurantLink2 = new EssentialLinkEntity();
         restaurantLink2.setId(2);
         restaurantLink2.setTitle("restaurantLink2 ABC");
         restaurantLink2.setLink("child.com");
@@ -60,5 +51,30 @@ class EssentialLinkMapperTest {
         Assertions.assertEquals(essentialLinkDto.getChildren().get(0).getIsActive(), true);
 
     }
+
+    @Test
+    void testEssentialLinKDtoMapToEntity(){
+
+        EssentialLinkDto essentialLinkDtoChild = new EssentialLinkDto();
+        essentialLinkDtoChild.setId(11);
+        essentialLinkDtoChild.setTitle("Child1");
+        EssentialLinkDto essentialLinkDtoChild2 = new EssentialLinkDto();
+        essentialLinkDtoChild2.setTitle("Child2");
+        EssentialLinkDto essentialLinkDtoParent = new EssentialLinkDto();
+        essentialLinkDtoParent.setId(1);
+        essentialLinkDtoParent.setTitle("Parent");
+        essentialLinkDtoParent.setLink("Parent");
+        essentialLinkDtoParent.getChildren().add(essentialLinkDtoChild);
+        essentialLinkDtoParent.getChildren().add(essentialLinkDtoChild2);
+        EssentialLinkEntity essentialLinkEntity = essentialLinkMapper.mapToEntity(essentialLinkDtoParent);
+        System.out.println(essentialLinkEntity.getChildren().size());
+        Assertions.assertEquals(essentialLinkEntity.getId(), 1);
+        Assertions.assertEquals(essentialLinkEntity.getChildren().size(), 2);
+        Assertions.assertEquals(essentialLinkEntity.getChildren().get(0).getParent().getTitle(), "Parent");
+        Assertions.assertEquals(essentialLinkEntity.getChildren().get(0).getTitle(), "Child1");
+        Assertions.assertEquals(essentialLinkEntity.getChildren().get(0).getId(), 11);
+        Assertions.assertEquals(essentialLinkEntity.getChildren().get(1).getTitle(), "Child2");
+    }
+
 
 }

@@ -1,9 +1,9 @@
 package com.waxy.dto;
 
-import com.waxy.database.entity.EssentialLink;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
@@ -17,5 +17,6 @@ public class EssentialLinkDto {
     private String caption;
     private String icon;
     private Boolean isActive;
-    private List<EssentialLinkDto> children;
+    private List<EssentialLinkDto> children = new ArrayList<>();
+    private Integer essentialLinkGroupId;
 }

@@ -17,7 +17,7 @@ public class EssentialLinkGroupRelation {
 
     @ManyToOne
     @JoinColumn(name = "essential_link_id")
-    private EssentialLink essentialLink;
+    private EssentialLinkEntity essentialLink;
 
     @ManyToOne
     @JoinColumn(name = "essential_link_group_id")

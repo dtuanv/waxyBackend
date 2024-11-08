@@ -1,8 +1,6 @@
 package com.waxy.controller;
 
-import com.waxy.database.entity.EssentialLink;
-import com.waxy.database.entity.EssentialLinkGroup;
-import com.waxy.database.entity.EssentialLinkGroupRelation;
+import com.waxy.database.entity.EssentialLinkEntity;
 import com.waxy.database.repository.EssentialLinkGroupRelationRepository;
 import com.waxy.database.repository.EssentialLinkGroupRepository;
 import com.waxy.database.repository.EssentialLinkRepository;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,7 +28,7 @@ public class LayoutController {
 
 
     @GetMapping("/all")
-    public List<EssentialLink> getAllActiveLinkWithChildren(){
+    public List<EssentialLinkEntity> getAllActiveLinkWithChildren(){
         return essentialLinkService.getAllActiveLinksWithChildren();
     }
 }
