@@ -1,17 +1,15 @@
 package com.waxy.service.mapper.layout;
 
-import com.waxy.database.entity.EssentialLinkEntity;
-import com.waxy.database.repository.EssentialLinkRepository;
-import com.waxy.dto.EssentialLinkDto;
+import com.waxy.database.entity.layout.EssentialLinkEntity;
+import com.waxy.database.repository.layout.EssentialLinkRepository;
+import com.waxy.dto.layout.EssentialLinkDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
 @ExtendWith(MockitoExtension.class)
 class EssentialLinkMapperTest {
 
@@ -42,8 +40,10 @@ class EssentialLinkMapperTest {
         restaurantLink2.setIsActive(true);
         restaurantLink2.setParent(restaurantLink);
 
+        restaurantLink.getChildren().add(restaurantLink2);
 
-        Mockito.when(essentialLinkRepository.findEssentialLinkByParentId(restaurantLink.getId())).thenReturn(List.of(restaurantLink2)) ;
+
+//        Mockito.when(essentialLinkRepository.findEssentialLinkByParentId(restaurantLink.getId())).thenReturn(List.of(restaurantLink2)) ;
         EssentialLinkDto essentialLinkDto = essentialLinkMapper.mapToDto(restaurantLink);
         Assertions.assertEquals(essentialLinkDto.getIsActive(), true);
         Assertions.assertEquals(essentialLinkDto.getLink(), "https://restaurant-abc.com");
@@ -67,7 +67,6 @@ class EssentialLinkMapperTest {
         essentialLinkDtoParent.getChildren().add(essentialLinkDtoChild);
         essentialLinkDtoParent.getChildren().add(essentialLinkDtoChild2);
         EssentialLinkEntity essentialLinkEntity = essentialLinkMapper.mapToEntity(essentialLinkDtoParent);
-        System.out.println(essentialLinkEntity.getChildren().size());
         Assertions.assertEquals(essentialLinkEntity.getId(), 1);
         Assertions.assertEquals(essentialLinkEntity.getChildren().size(), 2);
         Assertions.assertEquals(essentialLinkEntity.getChildren().get(0).getParent().getTitle(), "Parent");

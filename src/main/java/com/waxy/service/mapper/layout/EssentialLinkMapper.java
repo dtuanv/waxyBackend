@@ -1,8 +1,8 @@
 package com.waxy.service.mapper.layout;
 
-import com.waxy.database.entity.EssentialLinkEntity;
-import com.waxy.database.repository.EssentialLinkRepository;
-import com.waxy.dto.EssentialLinkDto;
+import com.waxy.database.entity.layout.EssentialLinkEntity;
+import com.waxy.database.repository.layout.EssentialLinkRepository;
+import com.waxy.dto.layout.EssentialLinkDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +26,10 @@ public class EssentialLinkMapper {
         essentialLinkDto.setDescription(essentialLinkEntity.getDescription());
         essentialLinkDto.setTitle(essentialLinkEntity.getTitle());
         essentialLinkDto.setIsActive(essentialLinkEntity.getIsActive());
-
-        List<EssentialLinkEntity> essentialLinkList = essentialLinkRepository.findEssentialLinkByParentId(essentialLinkEntity.getId());
-        List<EssentialLinkDto> essentialLinkDtoList = essentialLinkList.stream().map(this::mapToDto).collect(Collectors.toList());
+//
+//        List<EssentialLinkEntity> essentialLinkList = essentialLinkRepository.findEssentialLinkByParentId(essentialLinkEntity.getId());
+//        List<EssentialLinkDto> essentialLinkDtoList = essentialLinkList.stream().map(this::mapToDto).collect(Collectors.toList());
+        List<EssentialLinkDto> essentialLinkDtoList = essentialLinkEntity.getChildren().stream().map(this::mapToDto).collect(Collectors.toList());
         essentialLinkDto.setChildren(essentialLinkDtoList);
 
         return essentialLinkDto;

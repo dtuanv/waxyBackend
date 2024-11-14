@@ -1,4 +1,4 @@
-package com.waxy.database.entity;
+package com.waxy.database.entity.layout;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

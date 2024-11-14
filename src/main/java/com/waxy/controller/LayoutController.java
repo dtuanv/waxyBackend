@@ -1,9 +1,9 @@
 package com.waxy.controller;
 
-import com.waxy.database.entity.EssentialLinkEntity;
-import com.waxy.database.repository.EssentialLinkGroupRelationRepository;
-import com.waxy.database.repository.EssentialLinkGroupRepository;
-import com.waxy.database.repository.EssentialLinkRepository;
+import com.waxy.database.entity.layout.EssentialLinkEntity;
+import com.waxy.database.repository.layout.EssentialLinkGroupRelationRepository;
+import com.waxy.database.repository.layout.EssentialLinkGroupRepository;
+import com.waxy.database.repository.layout.EssentialLinkRepository;
 import com.waxy.service.layout.EssentialLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

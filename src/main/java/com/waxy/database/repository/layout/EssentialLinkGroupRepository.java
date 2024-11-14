@@ -1,6 +1,6 @@
-package com.waxy.database.repository;
+package com.waxy.database.repository.layout;
 
-import com.waxy.database.entity.EssentialLinkGroup;
+import com.waxy.database.entity.layout.EssentialLinkGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

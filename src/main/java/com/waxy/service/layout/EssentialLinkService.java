@@ -1,10 +1,10 @@
 package com.waxy.service.layout;
 
-import com.waxy.database.entity.EssentialLinkEntity;
-import com.waxy.database.repository.EssentialLinkGroupRelationRepository;
-import com.waxy.database.repository.EssentialLinkGroupRepository;
-import com.waxy.database.repository.EssentialLinkRepository;
-import com.waxy.dto.EssentialLinkDto;
+import com.waxy.database.entity.layout.EssentialLinkEntity;
+import com.waxy.database.repository.layout.EssentialLinkGroupRelationRepository;
+import com.waxy.database.repository.layout.EssentialLinkGroupRepository;
+import com.waxy.database.repository.layout.EssentialLinkRepository;
+import com.waxy.dto.layout.EssentialLinkDto;
 import com.waxy.service.mapper.layout.EssentialLinkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,6 @@
-package com.waxy.dto;
+package com.waxy.dto.layout;
 
+import com.waxy.dto.layout.EssentialLinkDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,4 +15,5 @@ public class EssentialLinkGroupDto {
     private String description;
 
     private List<EssentialLinkDto> essentialLinkDtoList;
+
 }
