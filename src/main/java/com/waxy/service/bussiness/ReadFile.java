@@ -1,10 +1,8 @@
 package com.waxy.service.bussiness;
 
 
-import com.ricesoft.ExcelReader;
 import com.ricesoft.HeaderData;
 import org.example.Tuan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
